@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Het Web Studio — Custom Frontend Websites</title>
+  <meta name="description" content="Buy modern, fast, responsive frontend websites. Built with HTML, Tailwind CSS & JavaScript. Get a custom landing page or full site in days." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          colors: {
+            brand: {
+              50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa',
+              500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a'
+            },
+          },
+          boxShadow: {
+            glow: '0 10px 25px rgba(59,130,246,0.25)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .op{
+        color:  black;
+        background-color: #fff;
+    }
+
+    .relative img{
+        border-radius: 30px;
+    }
+    html { scroll-behavior: smooth; }
+    .container-max { max-width: 1200px; }
+    .clip-blob { clip-path: path('M73.8 -79.8C96.3 -61.7 110 -30.8 108.2 -1.8C106.4 27.1 89.1 54.2 66.5 77.1C43.9 100 15.9 118.7 -12.6 123.9C-41.1 129.1 -70 120.8 -87.9 100.3C-105.7 79.9 -112.5 47.3 -110.7 17.3C-108.9 -12.6 -98.6 -40 -82 -60.5C-65.4 -81.1 -42.6 -94.8 -17.1 -104.8C8.5 -114.8 34 -121.2 56.2 -111.3C78.4 -101.4 97.2 -75.3 73.8 -79.8Z'); }
+    /* Simple fade/slide animations */
+    .reveal { opacity: 0; transform: translateY(16px); transition: all 700ms ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body class="bg-neutral-950 text-white selection:bg-brand-400/40">
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50 backdrop-blur bg-neutral-950/60 border-b border-white/5">
+    <nav class="mx-auto container-max px-4 py-3 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2 group">
+        <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-fuchsia-500 shadow-glow group-hover:scale-105 transition">
+          <!-- Sparkle icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M11.645 20.91l-.004-.002c-.837-.346-1.232-.519-1.54-.712a4.5 4.5 0 01-1.506-1.506c-.193-.308-.366-.703-.712-1.54l-.002-.004c-.125-.303-.188-.455-.256-.592a2.25 2.25 0 00-1.067-1.067c-.137-.068-.289-.131-.592-.256l-.004-.002c-.837-.346-1.232-.519-1.54-.712a4.5 4.5 0 01-1.506-1.506c-.193-.308-.366-.703-.712-1.54l-.002-.004a8.1 8.1 0 010-6.265l.002-.004c.346-.837.519-1.232.712-1.54a4.5 4.5 0 011.506-1.506c.308-.193.703-.366 1.54-.712l.004-.002a8.1 8.1 0 016.265 0l.004.002c.837.346 1.232.519 1.54.712a4.5 4.5 0 011.506 1.506c.193.308.366.703.712 1.54l.002.004a8.1 8.1 0 010 6.265l-.002.004c-.346.837-.519 1.232-.712 1.54a4.5 4.5 0 01-1.506 1.506c-.308.193-.703.366-1.54.712l-.004.002c-.303.125-.455.188-.592.256a2.25 2.25 0 00-1.067 1.067c-.068.137-.131.289-.256.592z"/></svg>
+        </span>
+        <span class="text-xl font-semibold tracking-tight">Het Web Studio</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#services" class="hover:text-brand-300">Services</a>
+        <a href="#work" class="hover:text-brand-300">Work</a>
+        <a href="#pricing" class="hover:text-brand-300">Pricing</a>
+        <a href="#process" class="hover:text-brand-300">Process</a>
+        <a href="#faq" class="hover:text-brand-300">FAQ</a>
+        <a href="#contact" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition border border-white/10">Contact</a>
+      </div>
+
+      <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl bg-white/10 border border-white/10" aria-label="Open menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+    </nav>
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-white/5">
+      <div class="px-4 py-3 flex flex-col gap-3 text-sm">
+        <a href="#services" class="hover:text-brand-300">Services</a>
+        <a href="#work" class="hover:text-brand-300">Work</a>
+        <a href="#pricing" class="hover:text-brand-300">Pricing</a>
+        <a href="#process" class="hover:text-brand-300">Process</a>
+        <a href="#faq" class="hover:text-brand-300">FAQ</a>
+        <a href="#contact" class="px-4 py-2 rounded-xl text-center bg-white/10 hover:bg-white/20 transition border border-white/10">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10">
+      <div class="absolute -top-20 -right-20 h-96 w-96 clip-blob bg-gradient-to-br from-brand-500/30 to-fuchsia-500/20 blur-3xl"></div>
+      <div class="absolute -bottom-20 -left-20 h-[28rem] w-[28rem] clip-blob bg-gradient-to-br from-fuchsia-500/20 to-emerald-400/20 blur-3xl"></div>
+    </div>
+
+    <div class="mx-auto container-max px-4 pt-16 pb-20 lg:pt-24 lg:pb-28 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="reveal">
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs">
+          <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Taking new projects now
+        </span>
+        <h1 class="mt-4 text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight">
+          Get a stunning, fast <span class="bg-gradient-to-r from-brand-400 to-fuchsia-400 bg-clip-text text-transparent">frontend website</span> that converts.
+        </h1>
+        <p class="mt-4 text-neutral-300 max-w-[55ch]">I build pixel-perfect landing pages, business websites and UI components using HTML, Tailwind CSS & JavaScript. Mobile-first, SEO-friendly, and blazing fast.</p>
+        <div class="mt-6 flex flex-wrap items-center gap-3">
+          <a href="#pricing" class="px-5 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 shadow-glow font-semibold">See Pricing</a>
+          <a href="#work" class="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10">View Work</a>
+        </div>
+        <div class="mt-8 flex items-center gap-6 text-sm text-neutral-300">
+          <div class="flex items-center gap-2"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4"/></svg> 1–3 day delivery</div>
+          <div class="flex items-center gap-2"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 8c-2.21 0-4 1.79-4 4v6h8v-6c0-2.21-1.79-4-4-4z"/></svg> 30-day support</div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <!-- Showcase mockup card -->
+        <!-- RIGHT: Image / Mockup card -->
+      <div class="relative ">
+        <img
+          src="https://www.sortlist.com/_next/image?url=https%3A%2F%2Fsortlist.gumlet.io%2Fsortlist-core-api%2Fb9wydl4dktzxtolwk8q5sqex1fj3%3Fw%3D960%26format%3Dauto&w=640&q=75" 
+        />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="py-10 border-y border-white/5 bg-neutral-950/60">
+    <div class="mx-auto container-max px-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+      <div class="reveal"><p class="text-3xl font-bold">20+</p><p class="text-neutral-300">Projects delivered</p></div>
+      <div class="reveal"><p class="text-3xl font-bold">5★</p><p class="text-neutral-300">Client rating</p></div>
+      <div class="reveal"><p class="text-3xl font-bold">100%</p><p class="text-neutral-300">Mobile responsive</p></div>
+      <div class="reveal"><p class="text-3xl font-bold">SEO</p><p class="text-neutral-300">Best practices</p></div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-16">
+    <div class="mx-auto container-max px-4">
+      <div class="reveal text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold">Services</h2>
+        <p class="mt-2 text-neutral-300">Pick a package or mix & match. Custom requests welcome.</p>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="reveal rounded-2xl border border-white/10 bg-white/5 p-6">
+          <div class="h-10 w-10 rounded-xl bg-brand-500/20 grid place-content-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M4 5h16v2H4zM4 11h16v2H4zM4 17h10v2H4z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold">Using language</h3>
+          <p class="mt-2 text-neutral-300">High-converting single to duble  pages for products.</p>
+          <ul class="mt-4 text-sm text-neutral-300 list-disc pl-5 space-y-1">
+            <li>HTML</li>
+            <li>Tailwind Css</li>
+            <li>JavaScript</li>
+          </ul>
+        </div>
+        <!-- Card 2 -->
+        <div class="reveal rounded-2xl border border-white/10 bg-white/5 p-6">
+          <div class="h-10 w-10 rounded-xl bg-brand-500/20 grid place-content-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18v2H3zM3 8h18v12H3z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold">Extra services</h3>
+          <p class="mt-2 text-neutral-300">Along with your website,we provide engaging YouTube advertisements to boost your brand visibility and accelerate growth.</p>
+          <ul class="mt-4 text-sm text-neutral-300 list-disc pl-5 space-y-1">
+            <li>YouTube advertising</li>
+            <li>free github link</li>
+            <li>add payment only ₹13,000</li>
+          </ul>
+        </div>
+        <!-- Card 3 -->
+        <div class="reveal rounded-2xl border border-white/10 bg-white/5 p-6">
+          <div class="h-10 w-10 rounded-xl bg-brand-500/20 grid place-content-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M5 5h14v14H5z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold">Responsive</h3>
+          <p class="mt-2 text-neutral-300">100% Responsive your web site</p>
+          <ul class="mt-4 text-sm text-neutral-300 list-disc pl-5 space-y-1">
+            <li>Mobile</li>
+            <li>Tablet</li>
+            <li>Computer</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK / PORTFOLIO -->
+  <section id="work" class="py-16 border-t border-white/5">
+    <div class="mx-auto container-max px-4">
+      <div class="reveal text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold">Recent Work</h2>
+        <p class="mt-2 text-neutral-300">A quick look at styles you can choose. All these websites are available below, whichever site you like, tell me and I can make a website like that.</p>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
+        <!-- Portfolio card template -->
+        <article class="reveal group rounded-2xl overflow-hidden border border-white/10 bg-white/5">
+            
+            <img src="img/Screenshot 2025-09-05 031418.png" alt="Project Image" class="w-full h-48 object-cover rounded-t-lg">
+          <div class="p-5">
+            <h3 class="font-semibold">Portfolio</h3>
+            <p class="text-sm text-neutral-300 mt-1">Html + Css + JavaScript</p>
+            <a onclick="location.href='indet.html'" class="inline-flex items-center gap-2 mt-3 text-brand-300 group-hover:underline">Live preview <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M7 17l9-9v6h2V5h-9v2h6L6 16z"/></svg></a>
+          </div>
+        </article>
+        <article class="reveal group rounded-2xl overflow-hidden border border-white/10 bg-white/5">
+          <div class="aspect-video bg-gradient-to-br from-emerald-400/20 to-cyan-400/20"></div>
+          <div class="p-5">
+            <h3 class="font-semibold">Agency Website</h3>
+            <p class="text-sm text-neutral-300 mt-1">Multi-page with blog-ready layout</p>
+            <a href="#" class="inline-flex items-center gap-2 mt-3 text-brand-300 group-hover:underline">Live preview <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M7 17l9-9v6h2V5h-9v2h6L6 16z"/></svg></a>
+          </div>
+        </article>
+        <article class="reveal group rounded-2xl overflow-hidden border border-white/10 bg-white/5">
+          <div class="aspect-video bg-gradient-to-br from-rose-400/20 to-amber-400/20"></div>
+          <div class="p-5">
+            <h3 class="font-semibold">Local Business</h3>
+            <p class="text-sm text-neutral-300 mt-1">Services, gallery, contact form</p>
+            <a href="#" class="inline-flex items-center gap-2 mt-3 text-brand-300 group-hover:underline">Live preview <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M7 17l9-9v6h2V5h-9v2h6L6 16z"/></svg></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="py-16">
+    <div class="mx-auto container-max px-4">
+      <div class="reveal text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold">Pricing</h2>
+        <p class="mt-2 text-neutral-300">Simple, transparent pricing. Pay 50% to start, 50% on delivery.</p>
+      </div>
+
+      <div class="mt-8 flex items-center justify-center gap-3 text-sm">
+        <span>INR</span>
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" value="" class="sr-only peer" id="currencyToggle">
+          <div class="w-12 h-6 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-6 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+        </label>
+        <span>USD</span>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
+        <!-- Plan 1 -->
+        <div class="reveal rounded-2xl border border-white/10 bg-white/5 p-6 flex flex-col">
+          <h3 class="text-xl font-semibold">Starter</h3>
+          <p class="text-neutral-300 mt-1">Single landing page</p>
+          <p class="mt-4 text-3xl font-extrabold"><span class="price" data-inr="5999" data-usd="99">₹5,999</span></p>
+          <ul class="mt-4 text-sm text-neutral-300 list-disc pl-5 space-y-1 flex-1">
+            <li>1 page, 5 sections</li>
+            <li>Mobile responsive</li>
+            <li>Basic SEO</li>
+            <li>2 revisions</li>
+          </ul>
+          <button class="orderBtn mt-6 px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 shadow-glow font-semibold" data-plan="Starter">Order Starter</button>
+        </div>
+        <!-- Plan 2 -->
+        <div class="reveal rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5 p-6 flex flex-col ring-1 ring-white/10">
+          <div class="inline-flex text-xs px-2 py-1 rounded-full bg-emerald-400/20 text-emerald-200 border border-emerald-200/30 w-max">Most popular</div>
+          <h3 class="text-xl font-semibold mt-2">Business</h3>
+          <p class="text-neutral-300 mt-1">2–5 page website</p>
+          <p class="mt-4 text-3xl font-extrabold"><span class="price" data-inr="14999" data-usd="249">₹14,999</span></p>
+          <ul class="mt-4 text-sm text-neutral-300 list-disc pl-5 space-y-1 flex-1">
+            <li>Upto 5 pages</li>
+            <li>Speed & SEO optimized</li>
+            <li>Contact form</li>
+            <li>4 revisions</li>
+          </ul>
+          <button class="orderBtn mt-6 px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 shadow-glow font-semibold" data-plan="Business">Order Business</button>
+        </div>
+        <!-- Plan 3 -->
+        <div class="reveal rounded-2xl border border-white/10 bg-white/5 p-6 flex flex-col">
+          <h3 class="text-xl font-semibold">Pro</h3>
+          <p class="text-neutral-300 mt-1">Custom components & pages</p>
+          <p class="mt-4 text-3xl font-extrabold"><span class="price" data-inr="29999" data-usd="499">₹29,999</span></p>
+          <ul class="mt-4 text-sm text-neutral-300 list-disc pl-5 space-y-1 flex-1">
+            <li>Unlimited pages (scope)</li>
+            <li>Component library</li>
+            <li>Animations & effects</li>
+            <li>Priority support</li>
+          </ul>
+          <button class="orderBtn mt-6 px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 shadow-glow font-semibold" data-plan="Pro">Order Pro</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" class="py-16 border-t border-white/5">
+    <div class="mx-auto container-max px-4">
+      <div class="reveal text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold">How it works</h2>
+        <p class="mt-2 text-neutral-300">A clean 4-step workflow to ship fast.</p>
+      </div>
+
+      <ol class="mt-10 grid md:grid-cols-4 gap-6">
+        <li class="reveal rounded-2xl border border-white/10 bg-white/5 p-6">
+          <p class="text-sm text-neutral-400">Step 1</p>
+          <h3 class="font-semibold">Brief</h3>
+          <p class="text-neutral-300 mt-1">Tell me about your brand, goals and references.</p>
+        </li>
+        <li class="reveal rounded-2xl border border-white/10 bg-white/5 p-6">
+          <p class="text-sm text-neutral-400">Step 2</p>
+          <h3 class="font-semibold">Design</h3>
+          <p class="text-neutral-300 mt-1">I share a wireframe or mockup for approval.</p>
+        </li>
+        <li class="reveal rounded-2xl border border-white/10 bg-white/5 p-6">
+          <p class="text-sm text-neutral-400">Step 3</p>
+          <h3 class="font-semibold">Build</h3>
+          <p class="text-neutral-300 mt-1">Code with Tailwind + JS, optimized and responsive.</p>
+        </li>
+        <li class="reveal rounded-2xl border border-white/10 bg-white/5 p-6">
+          <p class="text-sm text-neutral-400">Step 4</p>
+          <h3 class="font-semibold">Launch</h3>
+          <p class="text-neutral-300 mt-1">Deploy + handover + 30 days of support.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="py-16">
+    <div class="mx-auto container-max px-4">
+      <div class="reveal text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold">Happy Clients</h2>
+        <p class="mt-2 text-neutral-300">What people say after launch.</p>
+      </div>
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
+        <figure class="reveal rounded-2xl border border-white/10 bg-white/5 p-6">
+          <blockquote class="text-neutral-200">“Fast and clean work. My landing page started converting from day 1.”</blockquote>
+          <figcaption class="mt-3 text-sm text-neutral-400">— Rahul, Course Creator</figcaption>
+        </figure>
+        <figure class="reveal rounded-2xl border border-white/10 bg-white/5 p-6">
+          <blockquote class="text-neutral-200">“Great communication and attention to detail. Highly recommended.”</blockquote>
+          <figcaption class="mt-3 text-sm text-neutral-400">— Priya, Agency Owner</figcaption>
+        </figure>
+        <figure class="reveal rounded-2xl border border-white/10 bg-white/5 p-6">
+          <blockquote class="text-neutral-2 00">“Performance score hit 100 on Lighthouse. Super happy!”</blockquote>
+          <figcaption class="mt-3 text-sm text-neutral-400">— Aman, Startup Founder</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-16 border-t border-white/5">
+    <div class="mx-auto container-max px-4">
+      <div class="reveal text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl sm:text-4xl font-bold">FAQ</h2>
+        <p class="mt-2 text-neutral-300">Quick answers before we start.</p>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-2 gap-6">
+        <details class="reveal group rounded-2xl border border-white/10 bg-white/5 p-6 open:bg-white/10">
+          <summary class="cursor-pointer list-none flex items-center justify-between">
+            <span class="font-semibold">How fast can you deliver?</span>
+            <span class="ml-4">➕</span>
+          </summary>
+          <p class="mt-3 text-neutral-300">Landing pages in 1–3 days. Multi-page sites 3–7 days depending on scope.</p>
+        </details>
+        <details class="reveal group rounded-2xl border border-white/10 bg-white/5 p-6 open:bg-white/10">
+          <summary class="cursor-pointer list-none flex items-center justify-between">
+            <span class="font-semibold">Do you provide content/images?</span>
+            <span class="ml-4">➕</span>
+          </summary>
+          <p class="mt-3 text-neutral-300">You can share content or I can use placeholders and royalty-free images.</p>
+        </details>
+        <details class="reveal group rounded-2xl border border-white/10 bg-white/5 p-6 open:bg-white/10">
+          <summary class="cursor-pointer list-none flex items-center justify-between">
+            <span class="font-semibold">Can you maintain my website?</span>
+            <span class="ml-4">➕</span>
+          </summary>
+          <p class="mt-3 text-neutral-300">Yes, monthly maintenance plans are available on request.</p>
+        </details>
+        <details class="reveal group rounded-2xl border border-white/10 bg-white/5 p-6 open:bg-white/10">
+          <summary class="cursor-pointer list-none flex items-center justify-between">
+            <span class="font-semibold">Do you offer refunds?</span>
+            <span class="ml-4">➕</span>
+          </summary>
+          <p class="mt-3 text-neutral-300">If the delivered work doesn't match the agreed brief, I'll fix it or refund the advance.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / CTA -->
+  <section id="contact" class="py-16">
+    <div class="mx-auto container-max px-4 grid lg:grid-cols-2 gap-8 items-center">
+      <div class="reveal">
+        <h2 class="text-3xl sm:text-4xl font-bold">Ready to start?</h2>
+        <p class="mt-2 text-neutral-300">Tell me about your project and preferred package. I reply within a few hours.</p>
+        <div class="mt-6 flex gap-3">
+          <a href="https://wa.me/919999999999?text=Hi%20Het%2C%20I%20want%20a%20frontend%20website.%20Package%3A%20" class="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 font-semibold" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="mailto:hello@example.com?subject=Project%20Inquiry%20-%20Het%20Web%20Studio" class="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10">Email</a>
+        </div>
+      </div>
+
+      <form id="contactForm" class="reveal rounded-2xl border border-white/10 bg-white/5 p-6 grid gap-4">
+        <div class="grid gap-1">
+          <label for="name" class="text-sm text-neutral-300">Your name</label>
+          <input id="name" name="name" type="text" class="px-4 py-3 rounded-xl bg-neutral-900 border border-white/10 focus:outline-none focus:ring-2 focus:ring-brand-500" required />
+        </div>
+        <div class="grid gap-1">
+          <label for="email" class="text-sm text-neutral-300">Email</label>
+          <input id="email" name="email" type="email" class="px-4 py-3 rounded-xl bg-neutral-900 border border-white/10 focus:outline-none focus:ring-2 focus:ring-brand-500" required />
+        </div>
+        <div class="grid gap-1">
+          <label for="package" class="text-sm text-neutral-300">Package</label>
+          <select id="package" name="package" class="px-4 py-3 rounded-xl bg-neutral-900 border border-white/10 focus:outline-none focus:ring-2 focus:ring-brand-500">
+            <option>Starter</option>
+            <option>Business</option>
+            <option>Pro</option>
+          </select>
+        </div>
+        <div class="grid gap-1">
+          <label for="message" class="text-sm text-neutral-300">Message</label>
+          <textarea id="message" name="message" rows="4" class="px-4 py-3 rounded-xl bg-neutral-900 border border-white/10 focus:outline-none focus:ring-2 focus:ring-brand-500" placeholder="Share goals, references, deadline..."></textarea>
+        </div>
+        <button type="submit" class="px-5 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 shadow-glow font-semibold">Send Message</button>
+        <p id="formNote" class="text-sm text-neutral-400">This demo form shows a success message (no backend required).</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 py-10">
+    <div class="mx-auto container-max px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-neutral-400">
+      <p>© <span id="year"></span> Het Web Studio. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="#" class="hover:text-white">Terms</a>
+        <a href="#" class="hover:text-white">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ORDER MODAL -->
+  <div id="orderModal" class="fixed inset-0 hidden items-center justify-center bg-black/60 p-4">
+    <div class="w-full max-w-md rounded-2xl border border-white/10 bg-neutral-950 p-6">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <h3 class="text-xl font-semibold">Start your project</h3>
+          <p class="text-neutral-400 text-sm">Package: <span id="modalPlan" class="font-medium"></span></p>
+        </div>
+        <button id="closeModal" class="p-2 rounded-lg bg-white/10">✕</button>
+      </div>
+      <div class="mt-4 grid gap-3">
+        <a id="modalWhatsApp" href="#" target="_blank" rel="noopener" class="px-4 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-center font-semibold">Chat on WhatsApp</a>
+        <a id="modalEmail" href="#" class="px-4 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-center">Send Email</a>
+      </div>
+      <p class="text-xs text-neutral-400 mt-4">No payment now. We'll discuss scope and timelines first.</p>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+    // Reveal on scroll (IntersectionObserver)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Currency toggle
+    const currencyToggle = document.getElementById('currencyToggle');
+    const prices = document.querySelectorAll('.price');
+    const toCurrency = (val, currency) => {
+      return new Intl.NumberFormat('en-IN', { style: 'currency', currency }).format(val);
+    }
+    const updatePrices = () => {
+      const usd = currencyToggle.checked;
+      prices.forEach(el => {
+        const amount = usd ? el.dataset.usd : el.dataset.inr;
+        el.textContent = usd ? `$${amount}` : `₹${Number(amount).toLocaleString('en-IN')}`;
+      });
+    };
+    currencyToggle.addEventListener('change', updatePrices);
+    updatePrices();
+
+    // Order modal
+    const orderBtns = document.querySelectorAll('.orderBtn');
+    const orderModal = document.getElementById('orderModal');
+    const modalPlan = document.getElementById('modalPlan');
+    const modalWhatsApp = document.getElementById('modalWhatsApp');
+    const modalEmail = document.getElementById('modalEmail');
+    const closeModal = document.getElementById('closeModal');
+
+    orderBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const plan = btn.dataset.plan;
+        modalPlan.textContent = plan;
+        const message = encodeURIComponent(`Hi Het, I'm interested in the ${plan} plan.`);
+        modalWhatsApp.href = `https://wa.me/919999999999?text=${message}`;
+        modalEmail.href = `mailto:hello@example.com?subject=${encodeURIComponent('Project Inquiry - ' + plan)}&body=${message}`;
+        orderModal.classList.remove('hidden');
+        orderModal.classList.add('flex');
+      });
+    });
+
+    closeModal.addEventListener('click', () => {
+      orderModal.classList.add('hidden');
+      orderModal.classList.remove('flex');
+    });
+    orderModal.addEventListener('click', (e) => {
+      if (e.target === orderModal) {
+        orderModal.classList.add('hidden');
+        orderModal.classList.remove('flex');
+      }
+    });
+
+    // Contact form (demo)
+    const contactForm = document.getElementById('contactForm');
+    const formNote = document.getElementById('formNote');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      formNote.textContent = 'Thanks! Your message was recorded (demo). I will get back to you shortly.';
+      contactForm.reset();
+    });
+  </script>
+</body>
+</html>

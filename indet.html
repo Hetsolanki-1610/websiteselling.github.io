@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Frontend Portfolio - Het Solanki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          colors: {
+            primary: '#0ea5a4',
+            dark: '#0f172a'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .op img{
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+    }
+
+    /* Tiny extra styles */
+    .glass { background: rgba(255,255,255,0.06); backdrop-filter: blur(6px); }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-slate-100 font-sans">
+  <!-- NAV -->
+  <header class="sticky top-0 z-40 bg-slate-900/60 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-emerald-500 flex items-center justify-center text-slate-900 font-bold">HS</div>
+        <div>
+          <div class="font-semibold">Het Solanki</div>
+          <div class="text-xs text-slate-400 -mt-1">Frontend Developer</div>
+        </div>
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#projects" class="hover:text-white transition">Projects</a>
+        <a href="#about" class="hover:text-white transition">About</a>
+        <a href="#contact" class="hover:text-white transition">Contact</a>
+        <a href="#" class="ml-4 inline-block bg-primary text-slate-900 px-4 py-2 rounded-lg font-semibold shadow-md hover:scale-105 transform transition">Hire me</a>
+      </nav>
+      <div class="md:hidden">
+        <button id="navToggle" class="p-2 rounded-md hover:bg-slate-800">☰</button>
+      </div>
+    </div>
+    <!-- mobile menu -->
+    <div id="mobileMenu" class="hidden md:hidden px-6 pb-4">
+      <a href="#projects" class="block py-2">Projects</a>
+      <a href="#about" class="block py-2">About</a>
+      <a href="#contact" class="block py-2">Contact</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main class="max-w-6xl mx-auto px-6 py-12">
+    <section class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <p class="text-sm text-emerald-300 font-medium">Hello, I'm</p>
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Het Solanki — Frontend Developer</h1>
+        <p class="mt-4 text-slate-300 max-w-xl">I build modern, responsive web interfaces using React, Tailwind CSS and clean HTML/JS. I love animations, pixel-perfect UIs and projects that ship value.</p>
+        <div class="mt-6 flex gap-3">
+          <a href="#projects" class="inline-flex items-center gap-2 bg-primary text-slate-900 px-5 py-3 rounded-lg font-semibold shadow hover:scale-105 transition">See my work</a>
+          <a href="#contact" class="inline-flex items-center gap-2 border border-slate-700 px-5 py-3 rounded-lg text-slate-200 hover:bg-slate-800 transition">Let's talk</a>
+        </div>
+
+        <div class="mt-8 grid grid-cols-3 gap-3 text-sm text-slate-400">
+          <div class="glass p-3 rounded-lg text-center">
+            <div class="text-2xl font-bold">8+</div>
+            <div class="mt-1">Projects</div>
+          </div>
+          <div class="glass p-3 rounded-lg text-center">
+            <div class="text-2xl font-bold">0</div>
+            <div class="mt-1">Internships</div>
+          </div>
+          <div class="glass p-3 rounded-lg text-center">
+            <div class="text-2xl font-bold">HTML • CSS • JS</div>
+            <div class="mt-1">Skills</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative">
+        <!-- Banner image with side button that changes image -->
+        <div class="bg-gradient-to-br from-slate-700/40 to-slate-900 rounded-2xl p-1">
+          <div id="heroCard" class="relative rounded-2xl overflow-hidden h-72 md:h-96">
+            <img src="https://image.benq.com/is/image/benqco/01-150?$ResponsivePreset$" alt="project image" class="absolute inset-0 w-full h-full object-cover" />
+            <div class="absolute bottom-4 left-4 bg-slate-900/60 text-slate-100 px-4 py-2 rounded-lg">Featured Project</div>
+          </div>
+        </div>
+
+        <div class="absolute -left-6 top-1/2 transform -translate-y-1/2 flex flex-col gap-3">
+          <button class="heroSwitch p-3 rounded-lg glass hover:scale-105 transition" data-src="https://i.ytimg.com/vi/gXEI8Oy0EMc/maxresdefault.jpg">1</button>
+          <button class="heroSwitch p-3 rounded-lg glass hover:scale-105 transition" data-src="https://blog.zegocloud.com/wp-content/uploads/2024/02/landing-page-frontend-project-1024x576.jpg">2</button>
+          <button class="heroSwitch p-3 rounded-lg glass hover:scale-105 transition" data-src="https://codehalweb.com/wp-content/uploads/2023/05/thumbnail-12-1024x576.jpg">3</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="mt-16">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-bold">Selected Projects</h2>
+        <p class="text-sm text-slate-400">React · Tailwind · HTML/CSS · Animations</p>
+      </div>
+
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Project Card -->
+        <article class="group bg-slate-800 rounded-2xl overflow-hidden shadow-lg">
+          <div class="relative h-48 overflow-hidden">
+            <img src="https://elements-resized.envatousercontent.com/elements-cover-images/e1d552c1-f6b5-4920-9028-cc039a25775d?w=1200&h=630&cf_fit=crop&q=85&format=jpeg&s=7208f7779a351f2f9eb7210cfbc88d4380c2a50daf86921935ddddaedda9a80c" alt="proj" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition" />
+            <div class="absolute top-4 right-4 flex gap-2">
+              <button class="p-2 rounded-lg glass" onclick="openCarousel(['https://elements-resized.envatousercontent.com/elements-cover-images/e1d552c1-f6b5-4920-9028-cc039a25775d?w=1200&h=630&cf_fit=crop&q=85&format=jpeg&s=7208f7779a351f2f9eb7210cfbc88d4380c2a50daf86921935ddddaedda9a80c'])">🔍</button>
+            </div>
+          </div>
+          <div class="p-4">
+            <h3 class="font-semibold">Project One Login page</h3>
+            <p class="mt-2 text-sm text-slate-400">A responsive admin dashboard made with Html and Css.</p>
+            <div class="mt-4 flex items-center justify-between">
+              <div class="text-xs text-slate-300">HTML · Css</div>
+              <a href="#" class="text-sm font-medium text-primary">View →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Duplicate cards (copy & edit) -->
+        <article class="group bg-slate-800 rounded-2xl overflow-hidden shadow-lg">
+          <div class="relative h-48 overflow-hidden">
+            <img src="https://graphicsfamily.com/wp-content/uploads/edd/2022/02/Free-Modern-Landing-Page-Template.jpg" alt="proj" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition" />
+            <div class="absolute top-4 right-4 flex gap-2">
+              <button class="p-2 rounded-lg glass" onclick="openCarousel(['https://graphicsfamily.com/wp-content/uploads/edd/2022/02/Free-Modern-Landing-Page-Template.jpg'])">🔍</button>
+            </div>
+          </div>
+          <div class="p-4">
+            <h3 class="font-semibold">Project Two  Landing Page</h3>
+            <p class="mt-2 text-sm text-slate-400">A marketing landing page with animations and accessibility in mind.</p>
+            <div class="mt-4 flex items-center justify-between">
+              <div class="text-xs text-slate-300">HTML · CSS</div>
+              <a href="#" class="text-sm font-medium text-primary">Live →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="group bg-slate-800 rounded-2xl overflow-hidden shadow-lg">
+          <div class="relative h-48 overflow-hidden">
+            <img src="https://cdn.dribbble.com/userupload/12735882/file/original-5e441565c621e93a4cae62ddee2a8d38.png?resize=752x&vertical=center" alt="proj" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition" />
+            <div class="absolute top-4 right-4 flex gap-2">
+              <button class="p-2 rounded-lg glass" onclick="openCarousel(['https://cdn.dribbble.com/userupload/12735882/file/original-5e441565c621e93a4cae62ddee2a8d38.png?resize=752x&vertical=center'])">🔍</button>
+            </div>
+          </div>
+          <div class="p-4">
+            <h3 class="font-semibold">Project Three</h3>
+            <p class="mt-2 text-sm text-slate-400">E-commerce product cards with micro-interactions.</p>
+            <div class="mt-4 flex items-center justify-between">
+              <div class="text-xs text-slate-300">JS · Tailwind</div>
+              <a href="#" class="text-sm font-medium text-primary">Code →</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+
+      <!-- project 2 row -->
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Project Card -->
+        <article class="group bg-slate-800 rounded-2xl overflow-hidden shadow-lg">
+          <div class="relative h-48 overflow-hidden">
+            <img src="https://www.logicraysacademy.com/blog/wp-content/uploads/2023/03/rp7.jpg" alt="proj" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition" />
+            <div class="absolute top-4 right-4 flex gap-2">
+              <button class="p-2 rounded-lg glass" onclick="openCarousel(['https://www.logicraysacademy.com/blog/wp-content/uploads/2023/03/rp7.jpg'])">🔍</button>
+            </div>
+          </div>
+          <div class="p-4">
+            <h3 class="font-semibold">Project Four Music player</h3>
+            <p class="mt-2 text-sm text-slate-400">A responsive admin music player made with Html and Css.</p>
+            <div class="mt-4 flex items-center justify-between">
+              <div class="text-xs text-slate-300">HTML · React</div>
+              <a href="#" class="text-sm font-medium text-primary">View →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Duplicate cards (copy & edit) -->
+        <article class="group bg-slate-800 rounded-2xl overflow-hidden shadow-lg">
+          <div class="relative h-48 overflow-hidden">
+            <img src="https://res.cloudinary.com/dz209s6jk/image/upload/v1625142745/Screenshots/m1ntyhfni1w9907kypck.jpg" alt="proj" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition" />
+            <div class="absolute top-4 right-4 flex gap-2">
+              <button class="p-2 rounded-lg glass" onclick="openCarousel(['https://res.cloudinary.com/dz209s6jk/image/upload/v1625142745/Screenshots/m1ntyhfni1w9907kypck.jpg'])">🔍</button>
+            </div>
+          </div>
+          <div class="p-4">
+            <h3 class="font-semibold">Project Five Calculater</h3>
+            <p class="mt-2 text-sm text-slate-400">A creat a Calculater made with Html,css and java.</p>
+            <div class="mt-4 flex items-center justify-between">
+              <div class="text-xs text-slate-300">HTML · CSS · JavaScript</div>
+              <a href="#" class="text-sm font-medium text-primary">Live →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="group bg-slate-800 rounded-2xl overflow-hidden shadow-lg">
+          <div class="relative h-48 overflow-hidden">
+            <img src="https://i0.wp.com/onaircode.com/wp-content/uploads/2020/01/Simple-Weather-App-Design.jpg?resize=1080%2C675&ssl=1" alt="proj" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition" />
+            <div class="absolute top-4 right-4 flex gap-2">
+              <button class="p-2 rounded-lg glass" onclick="openCarousel(['https://i0.wp.com/onaircode.com/wp-content/uploads/2020/01/Simple-Weather-App-Design.jpg?resize=1080%2C675&ssl=1'])">🔍</button>
+            </div>
+          </div>
+          <div class="p-4">
+            <h3 class="font-semibold">Project Three  temperature</h3>
+            <p class="mt-2 text-sm text-slate-400"> temperature cards created with Html,  css and java.</p>
+            <div class="mt-4 flex items-center justify-between">
+              <div class="text-xs text-slate-300">HTML · CSS · JavaScript</div>
+              <a href="#" class="text-sm font-medium text-primary">Code →</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ABOUT & CONTACT -->
+    <section id="about" class="mt-16 grid md:grid-cols-3 gap-6">
+      <div class="md:col-span-2 bg-slate-800 rounded-2xl p-6">
+        <h3 class="text-xl font-semibold">About me</h3>
+        <p class="mt-4 text-slate-300">I'm a frontend developer focused on building clean, responsive interfaces. I enjoy turning designs into working products and learning new UI patterns. Currently building projects with React and Tailwind.</p>
+
+        <ul class="mt-6 grid grid-cols-2 gap-3 text-sm text-slate-300">
+          <li>• Responsive layouts</li>
+          <li>• Accessibility</li>
+          <li>• Animations & micro-interactions</li>
+          <li>• Performance</li>
+        </ul>
+      </div>
+
+      <div id="contact" class="bg-gradient-to-br from-slate-800 to-slate-700 rounded-2xl p-6 op">
+        <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXert6ekqTL1J7LVWNAhs65_GeostayFqh6A&s" alt="">
+        <!-- <h3 class="text-xl font-semibold">Contact</h3>
+        
+        <p class="mt-2 text-slate-300 text-sm">Want to work together? Send a message.</p> -->
+        <!-- <form class="mt-4 space-y-3" onsubmit="event.preventDefault(); alert('Message sent — replace this with real form handling')">
+          <input class="w-full bg-slate-900/40 rounded-lg px-3 py-2 text-slate-100" placeholder="Your name" required />
+          <input type="email" class="w-full bg-slate-900/40 rounded-lg px-3 py-2 text-slate-100" placeholder="Email" required />
+          <textarea class="w-full bg-slate-900/40 rounded-lg px-3 py-2 text-slate-100" rows="4" placeholder="Message"></textarea>
+          <button class="w-full bg-primary text-slate-900 px-4 py-2 rounded-lg font-semibold">Send message</button>
+        </form> -->
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 border-t border-slate-800 mt-16">
+    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-start justify-between gap-6">
+      <div>
+        <div class="font-bold text-lg">Het Solanki</div>
+        <div class="text-slate-400 text-sm mt-1">Frontend Developer • React & Tailwind</div>
+      </div>
+      <div class="flex gap-6">
+        <div>
+          <div class="text-sm font-semibold">Social</div>
+          <div class="mt-2 text-slate-400 text-sm">GitHub · LinkedIn · Twitter</div>
+        </div>
+        <div>
+          <div class="text-sm font-semibold">More</div>
+          <div class="mt-2 text-slate-400 text-sm">Resume · Contact</div>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-slate-800 text-slate-500 text-sm text-center py-4">© 2025 Het Solanki. Built with ❤ using Tailwind CSS</div>
+  </footer>
+
+  <!-- Image Carousel Modal -->
+  <div id="carouselModal" class="fixed inset-0 hidden items-center justify-center bg-black/70 z-50">
+    <div class="relative max-w-4xl w-full mx-4">
+      <button onclick="closeCarousel()" class="absolute top-3 right-3 bg-slate-800/70 px-3 py-2 rounded-md">✕</button>
+      <div id="carouselInner" class="bg-slate-900 rounded-lg overflow-hidden">
+        <img id="carouselImg" src="" alt="carousel" class="w-full h-96 object-cover" />
+      </div>
+      <div class="flex justify-between mt-2">
+        <button onclick="prevImg()" class="px-4 py-2 glass rounded">Prev</button>
+        <button onclick="nextImg()" class="px-4 py-2 glass rounded">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Mobile nav
+    document.getElementById('navToggle').addEventListener('click', ()=>{
+      const m = document.getElementById('mobileMenu');
+      m.classList.toggle('hidden');
+    });
+
+    // Hero image switcher
+    document.querySelectorAll('.heroSwitch').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const src = btn.getAttribute('data-src');
+        document.querySelector('#heroCard img').src = src;
+      });
+    });
+
+    // Simple carousel modal
+    let carouselImages = [];
+    let currentIndex = 0;
+    function openCarousel(list){
+      carouselImages = list;
+      currentIndex = 0;
+      document.getElementById('carouselImg').src = carouselImages[0];
+      document.getElementById('carouselModal').classList.remove('hidden');
+      document.getElementById('carouselModal').classList.add('flex');
+    }
+    function closeCarousel(){
+      document.getElementById('carouselModal').classList.add('hidden');
+      document.getElementById('carouselModal').classList.remove('flex');
+    }
+    function prevImg(){
+      if(!carouselImages.length) return;
+      currentIndex = (currentIndex - 1 + carouselImages.length) % carouselImages.length;
+      document.getElementById('carouselImg').src = carouselImages[currentIndex];
+    }
+    function nextImg(){
+      if(!carouselImages.length) return;
+      currentIndex = (currentIndex + 1) % carouselImages.length;
+      document.getElementById('carouselImg').src = carouselImages[currentIndex];
+    }
+
+    // close modal on backdrop click
+    document.getElementById('carouselModal').addEventListener('click', (e)=>{
+      if(e.target.id === 'carouselModal') closeCarousel();
+    });
+  </script>
+</body>
+</html>
