@@ -202,14 +202,30 @@
       width: 11px;
     }
 
-    .lpo button {
-      border: 1px solid;
-      width: 350px;
-      height: 35px;
-      border-radius: 9px;
-      margin-top: 11px;
-      background: linear-gradient(45deg, rgba(166, 109, 48, 1), rgba(255, 229, 142, 1) 50%, rgba(224, 176, 87, 1) 100%);
-    }
+    .lpo a,
+.lpo button {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  margin: 8px auto 0;
+  padding: 10px 0;
+  border: none;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.lpo a {
+  background: linear-gradient(to right, #f97316, #ea580c);
+  color: white;
+}
+
+.lpo button {
+  background: linear-gradient(45deg, rgba(166, 109, 48, 1), rgba(255, 229, 142, 1) 50%, rgba(224, 176, 87, 1) 100%);
+  color: white;
+}
+
+
   
   </style>
 
