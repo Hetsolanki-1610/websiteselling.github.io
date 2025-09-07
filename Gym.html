@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Gym</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      /* side scroll hata dega */
+    }
+
+    /* Scroll animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.2s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Glow Button */
+    .glow-btn {
+      box-shadow: 0 0 15px rgba(249, 115, 22, 0.6);
+      transition: all 0.3s ease;
+    }
+
+    .glow-btn:hover {
+      box-shadow: 0 0 25px rgba(249, 115, 22, 0.9);
+      transform: translateY(-3px);
+    }
+
+    section .py-20 {
+      padding-top: 5rem;
+      padding-bottom: 0rem;
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-black via-gray-900 to-black text-white font-sans">
+
+  <!-- Navbar -->
+  <header class="fixed w-full z-50 bg-black/70 backdrop-blur-lg border-b border-gray-800">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <h1 class="text-2xl font-bold text-orange-500 tracking-widest">FITNASSI</h1>
+      <nav class="hidden md:flex space-x-8 text-lg">
+        <a href="#" class="hover:text-orange-500 transition">Home</a>
+        <a href="#" class="hover:text-orange-500 transition">About</a>
+        <a href="#" class="hover:text-orange-500 transition">Programs</a>
+        <a href="#" class="hover:text-orange-500 transition">Trainers</a>
+        <a href="#" class="hover:text-orange-500 transition">Contact</a>
+      </nav>
+      <button class="bg-orange-500 px-5 py-2 rounded-xl glow-btn font-semibold">Join Now</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center justify-center bg-gray-900">
+    <div class="max-w-7xl mx-auto px-6 py-24 flex flex-col md:flex-row items-center gap-12">
+      <!-- Text -->
+      <div class="flex-1 ">
+        <p class="text-orange-500 font-semibold">Since - 1998</p>
+        <h2 class="text-6xl font-extrabold leading-tight">MAKE YOUR <br> <span class="text-orange-500">BODY SHAPE</span>
+        </h2>
+        <p class="text-gray-300 mt-6 text-lg">Unleash your potential with world-class trainers, premium equipment, and
+          advanced nutrition guidance.</p>
+        <button class="mt-8 bg-orange-500 px-8 py-3 rounded-xl glow-btn font-semibold text-lg">Get Started</button>
+      </div>
+      <!-- Image -->
+      <div class="flex-1 ">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAGkZ6b3g6Qk_OTDYakHzBPaxE3x6YbD4xlA&s" alt="Gym Workout"
+          class="rounded-2xl h-full w-full shadow-2xl border-4 border-orange-500/30">
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="py-20 bg-black reveal">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h3 class="text-4xl font-bold mb-14 reveal">WHY CHOOSE US?</h3>
+      <div class="grid md:grid-cols-4 gap-10">
+        <div
+          class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl shadow-xl border border-orange-500/20 reveal">
+          <h4 class="text-2xl font-semibold text-orange-500 mb-3">Progression</h4>
+          <p class="text-gray-400">Step-by-step guidance to achieve your fitness goals.</p>
+        </div>
+        <div
+          class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl shadow-xl border border-orange-500/20 reveal">
+          <h4 class="text-2xl font-semibold text-orange-500 mb-3">Workout</h4>
+          <p class="text-gray-400">Daily personalized and effective workout plans.</p>
+        </div>
+        <div
+          class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl shadow-xl border border-orange-500/20 reveal">
+          <h4 class="text-2xl font-semibold text-orange-500 mb-3">Nutrition</h4>
+          <p class="text-gray-400">Exclusive meal plans designed by certified nutritionists.</p>
+        </div>
+        <div
+          class="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl shadow-xl border border-orange-500/20 reveal">
+          <h4 class="text-2xl font-semibold text-orange-500 mb-3">Self Defence</h4>
+          <p class="text-gray-400">Boost confidence by learning practical self-defence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Training Programs -->
+  <!-- Training Programs -->
+  <section class="py-2 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h3 class="text-4xl font-bold mb-14 text-white">TRAINING PROGRAMS</h3>
+
+      <!-- Grid for responsive layout -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Card 1 -->
+        <div
+          class="bg-black p-3 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transform transition reveal">
+          <img src="https://images.theconversation.com/files/478906/original/file-20220812-22-plgtr.jpg?ixlib=rb-4.1.0&rect=0%2C20%2C6713%2C4451&q=45&auto=format&w=926&fit=clip" alt="Cardio Strength"
+            class="rounded-lg mb-3 w-full h- object-cover" />
+          <h4 class="text-lg font-semibold text-orange-500">Cardio Strength</h4>
+        </div>
+
+        <!-- Card 2 -->
+        <div
+          class="bg-black p-3 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transform transition reveal">
+          <img src="https://cdn.pixabay.com/photo/2016/03/27/07/08/man-1282232_640.jpg" />
+          <h4 class="text-lg font-semibold text-orange-500">Weight Lifting</h4>
+        </div>
+
+        <!-- Card 3 -->
+        <div
+          class="bg-black p-3 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transform transition reveal">
+          <img src="https://img.livestrong.com/-/clsd/getty/75a26c9c762a4f08bf826e6d1dee3426" alt="Body Balance"
+            class="rounded-lg mb-3 w-full  object-cover" />
+          <h4 class="text-lg font-semibold text-orange-500">Body Balance</h4>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- mahine -->
+  <section class="py-11 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h3 class="text-4xl font-bold mb-8 text-white">Gym-Equipment</h3>
+      <div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 gap-6"></div>
+
+      <!-- Responsive Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-5">
+
+        <!-- Card 1 -->
+        <div class="bg-black p-3 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transform transition">
+          <img width="100" src="https://cpimg.tistatic.com/08913945/b/4/Lat-PullDown-machine.jpg"
+            alt="Lat Pulldown Machine" class="rounded-lg mb-3 w-full h-40 object-cover" />
+          <h4 class="text-base font-semibold text-orange-500">Lat Pulldown Machine</h4>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-black p-3 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transform transition">
+          <img src="https://5.imimg.com/data5/FT/CP/EX/SELLER-38017335/seated-cable-row-machine.jpg"
+            alt="Cable Row Machine" class="rounded-lg mb-3 w-full h-40 object-cover" />
+          <h4 class="text-base font-semibold text-orange-500">Cable Row Machine</h4>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-black p-3 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transform transition">
+          <img
+            src="https://image.made-in-china.com/202f0j00okhbRLnfbqcH/Plate-Loaded-Upper-Back-Machine-T-Bar-Row-Machine.webp"
+            alt="Body Balance" class="rounded-lg mb-3 w-full h-40 object-cover" />
+          <h4 class="text-base font-semibold text-orange-500">T-Bar-Row-Machine</h4>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="bg-black p-3 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transform transition">
+          <img
+            src="https://s.alicdn.com/@sc04/kf/Ae3ec104b2a5645e89ebceafa446ed7ebO/Commercial-Gym-Equipment-Plate-Loaded-Strength-Machine-Gym-Sports-Training-Iso-lateral-Seated-Rowing-Machine.jpg"
+            alt="Strength Training" class="rounded-lg mb-3 w-full h-40 object-cover" />
+          <h4 class="text-base font-semibold text-orange-500">lateral row machine for Gyms</h4>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="bg-black p-3 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transform transition">
+          <img src="https://images-eu.ssl-images-amazon.com/images/I/517B51d+rFL.AC_UL495_SR435,495.jpg"
+            alt="Strength Training" class="rounded-lg mb-3 w-full h-40 object-cover" />
+          <h4 class="text-base font-semibold text-orange-500">MultiFunctional Trainer Machine</h4>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="bg-black p-3 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transform transition">
+          <img
+            src="https://image.made-in-china.com/2f0j00bPzqcLmolykl/Gc-5047gym-Chest-Fly-Exercise-Rear-Delt-Gym-Strength-Gym-and-Fitness-Machine-for-Gym-Use.webp"
+            alt="Strength Training" class="rounded-lg mb-3 w-full h-40 object-cover" />
+          <h4 class="text-base font-semibold text-orange-500">Chest Fly Exercise Machine</h4>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="bg-black p-3 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transform transition">
+          <img width="100"
+            src="https://5.imimg.com/data5/SELLER/Default/2024/4/406365760/RN/XG/ON/134584002/biceps-triceps-machine.png"
+            alt="Lat Pulldown Machine" class="rounded-lg mb-3 w-full h-40 object-cover" />
+          <h4 class="text-base font-semibold text-orange-500">Biceps Machine</h4>
+        </div>
+
+        <!-- Card 8-->
+        <div class="bg-black p-3 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transform transition">
+          <img src="https://cdn.muscleandstrength.com/sites/default/files/incline-bench-press.jpg"
+            alt="Cable Row Machine" class="rounded-lg mb-3 w-full h-40 object-cover" />
+          <h4 class="text-base font-semibold text-orange-500">Incline Bench Press</h4>
+        </div>
+
+        <!-- Card 9 -->
+        <div class="bg-black p-3 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transform transition">
+          <img
+            src="https://www.myprotein.com/images?url=https://blogscdn.thehut.net/app/uploads/sites/478/2021/06/shutterstock_336330497opt_featured_1623658540_1200x672_acf_cropped.jpg&auto=avif&width=1200&fit=crop"
+            alt="Body Balance" class="rounded-lg mb-3 w-full h-40 object-cover" />
+          <h4 class="text-base font-semibold text-orange-500">Chest press </h4>
+        </div>
+
+        <!-- Card 10 -->
+        <div class="bg-black p-3 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transform transition">
+          <img src="https://images.surferseo.art/20c20d8f-da9c-4ad2-abdb-f5a758b7f4e8.png" alt="Strength Training"
+            class="rounded-lg mb-3 w-full h-40 object-cover" />
+          <h4 class="text-base font-semibold text-orange-500"> Decline Bench</h4>
+        </div>
+
+        <!-- Card 11-->
+        <div class="bg-black p-3 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transform transition">
+          <img src="https://www.asphaltgreen.org/wp-content/uploads/2025/01/Leg_Press_Lowered-1-scaled.webp"
+            alt="Strength Training" class="rounded-lg mb-3 w-full h-40 object-cover" />
+          <h4 class="text-base font-semibold text-orange-500"> Leg Press Machine</h4>
+        </div>
+
+        <!-- Card 12 -->
+        <div class="bg-black p-3 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transform transition">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0252/3155/6686/files/Leg_Extension_Machine_600x600.jpg?v=1696597612"
+            alt="Strength Training" class="rounded-lg mb-3 w-full h-40 object-cover" />
+          <h4 class="text-base font-semibold text-orange-500">Leg Extension Machine</h4>
+        </div>
+
+        <!-- Card 13 -->
+        <div class="bg-black p-3 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transform transition">
+          <img
+            src="https://images.ctfassets.net/8urtyqugdt2l/7nSTzWv7nnqTQ7z96DbscN/59d82f4b748cfaa079be42d293c91139/desktop-smith-machine-squat.jpg"
+            alt="Strength Training" class="rounded-lg mb-3 w-full h-40 object-cover" />
+          <h4 class="text-base font-semibold text-orange-500"> Smith Machine</h4>
+        </div>
+
+        <!-- Card 14-->
+        <div class="bg-black p-3 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transform transition">
+          <img
+            src="https://www.livemint.com/lm-img/img/2024/11/15/600x338/fitness_hack_squats_1731675029451_1731675035028.jpg"
+            alt="Strength Training" class="rounded-lg mb-3 w-full h-40 object-cover" />
+          <h4 class="text-base font-semibold text-orange-500"> squats Machine</h4>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- pics -->
+  <section class="py-11 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h3 class="text-4xl font-bold mb-8 text-white">Gym-pictures</h3>
+      <div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 gap-6"></div>
+
+      <!-- Responsive Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-5">
+
+        <!-- Card 1 -->
+        <div class="bg-black p-3 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transform transition">
+          <img width="100" src="https://cdn.pixabay.com/photo/2016/01/08/01/53/gymer-1126999_640.jpg"
+            alt="Lat Pulldown Machine" class="rounded-lg mb-3 w-full h-40 object-cover" />
+          <h4 class="text-base font-semibold text-orange-500"> Dumbbell's</h4>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-black p-3 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transform transition">
+          <img
+            src="https://images.unsplash.com/photo-1740895307920-0ba63bffc1c9?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Z3ltJTIwbWlycm9yfGVufDB8fDB8fHww"
+            alt="Cable Row Machine" class="rounded-lg mb-3 w-full h-40 object-cover" />
+          <h4 class="text-base font-semibold text-orange-500">Gym Mirror</h4>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-black p-3 rounded-xl shadow-lg border border-gray-700 hover:scale-105 transform transition">
+          <img
+            src="https://s3-ap-southeast-1.amazonaws.com/atap-main/gallery-full/7e637b62-3aa7-40a5-85fb-d6bd249fadfc/bump-bouldering-gym.jpg"
+            alt="Body Balance" class="rounded-lg mb-3 w-full h-40 object-cover" />
+          <h4 class="text-base font-semibold text-orange-500">Modern gym Bathroom </h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+  <!-- Our Programs Section -->
+  <section class="py-20 bg-black text-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <!-- Heading -->
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-orange-500">Our Programs</h2>
+        <p class="text-gray-400 mt-3 max-w-2xl mx-auto">
+          Choose from a variety of specialized training programs designed for fitness, wellness, and strength building.
+        </p>
+      </div>
+
+      <!-- Program 1 -->
+      <div class="grid md:grid-cols-2 gap-10 items-center mb-16">
+        <!-- Image with orange border -->
+        <div class="relative">
+          <img src="https://images.pexels.com/photos/414029/pexels-photo-414029.jpeg" alt="Corporate Membership"
+            class="rounded-2xl border-l-8 border-orange-500 shadow-xl">
+        </div>
+        <!-- Text -->
+        <div>
+          <h3 class="text-2xl font-semibold text-orange-500">Corporate Membership</h3>
+          <p class="text-gray-300 mt-3">
+            Don’t have time to go to the gym? We bring the gym to you.
+            Our corporate membership programs are tailored for companies aiming to improve
+            employee wellness and productivity. Including fitness events, seminars, and
+            nutrition counseling.
+          </p>
+        </div>
+      </div>
+
+      <!-- Program 2 -->
+      <div class="grid md:grid-cols-2 gap-10 items-center mb-16">
+        <!-- Text -->
+        <div class="order-2 md:order-1">
+          <h3 class="text-2xl font-semibold text-orange-500">Personal Training</h3>
+          <p class="text-gray-300 mt-3">
+            Get access to professional trainers and customized workout routines.
+            Whether your goal is weight loss, strength, or body transformation,
+            our personal training programs are designed for maximum results.
+          </p>
+        </div>
+        <!-- Image with right border -->
+        <div class="relative order-1 md:order-2">
+          <img src="https://images.pexels.com/photos/2261485/pexels-photo-2261485.jpeg" alt="Personal Training"
+            class="rounded-2xl border-r-8 border-orange-500 shadow-xl">
+        </div>
+      </div>
+
+      <!-- Program 3 -->
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <!-- Image with orange border -->
+        <div class="relative">
+          <img src="https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg" alt="Group Classes"
+            class="rounded-2xl border-l-8 border-orange-500 shadow-xl">
+        </div>
+        <!-- Text -->
+        <div>
+          <h3 class="text-2xl font-semibold text-orange-500">Group Classes</h3>
+          <p class="text-gray-300 mt-3">
+            Stay motivated with group workouts including yoga, cardio,
+            and functional training. Experience fun, energy, and discipline
+            with like-minded fitness enthusiasts.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Footer -->
+  <footer class="bg-black py-8 border-t border-gray-800 text-center text-gray-400">
+    <p>© 2025 Fitness Gym. All rights reserved. | Created by Hetsolanki |</p>
+  </footer>
+
+  <!-- Scroll Animation Script -->
+  <script>
+    const reveals = document.querySelectorAll(".reveal");
+    window.addEventListener("scroll", () => {
+      for (let i = 0; i < reveals.length; i++) {
+        const windowHeight = window.innerHeight;
+        const elementTop = reveals[i].getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) {
+          reveals[i].classList.add("active");
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>
