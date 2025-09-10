@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titan</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            /* side scroll hata dega */
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white text-gray-900">
+
+    <!-- Navbar -->
+    <nav class="flex flex-wrap items-center justify-between px-4 py-3 shadow-md">
+        <!-- Logo + Search -->
+        <div class="flex items-center justify-between w-full md:w-auto">
+            <h1 class="text-2xl font-bold">Watche.store</h1>
+            <button class="md:hidden text-gray-700"
+                onclick="document.getElementById('menu').classList.toggle('hidden')">
+                ☰
+            </button>
+        </div>
+        <div class="w-full mt-2 md:mt-0 md:w-auto">
+            <input type="text" placeholder="Search green dial" class="border px-3 py-1 rounded-md w-full md:w-72">
+        </div>
+
+        <!-- Menu -->
+        <div id="menu" class="hidden md:flex flex-col md:flex-row md:space-x-6 w-full md:w-auto mt-3 md:mt-0">
+            <a href="#" class="hover:text-blue-600 py-1">Account</a>
+            <a href="#" class="hover:text-blue-600 py-1">Wishlist</a>
+            <a href="#" class="hover:text-blue-600 py-1">Cart</a>
+            <a href="#" class="hover:text-blue-600 py-1">Track Order</a>
+        </div>
+    </nav>
+
+    <!-- Category Navbar -->
+    <div class="flex flex-wrap justify-center gap-4 py-3 bg-gray-50 shadow-sm text-sm md:text-base">
+        <a href="#" class="hover:text-blue-600">MEN</a>
+        <a href="#" class="hover:text-blue-600">WOMEN</a>
+        <a href="#" class="hover:text-blue-600">SMART WATCHES</a>
+        <a href="#" class="hover:text-blue-600">PREMIUM WATCHES</a>
+        <a href="#" class="hover:text-blue-600">WATCHES</a>
+        <a href="#" class="hover:text-blue-600">INTERNATIONAL BRANDS</a>
+        <a href="#" class="hover:text-blue-600">GIFTING</a>
+        <a href="#" class="hover:text-blue-600">SALE</a>
+        <a href="#" class="hover:text-blue-600">MORE</a>
+    </div>
+
+    <!-- Banner -->
+    <div class="mt-4 mx-4 rounded-md overflow-hidden">
+        <img src="https://universalwatchcompany.com/cdn/shop/files/top-discount-offers-on-watches-online.jpg?v=1745493697"
+            alt="Banner" class="w-full rounded-md shadow-lg">
+    </div>
+
+    <!-- Categories Buttons -->
+    <div class="flex flex-wrap justify-center gap-3 mt-6 px-4">
+        <button class="px-4 py-2 border rounded-md hover:bg-gray-100">Sale</button>
+        <button class="px-4 py-2 border rounded-md hover:bg-gray-100">Analog Watches</button>
+        <button class="px-4 py-2 border rounded-md hover:bg-gray-100">Smart Watches</button>
+        <button class="px-4 py-2 border rounded-md hover:bg-gray-100">Men</button>
+        <button class="px-4 py-2 border rounded-md hover:bg-gray-100">Women</button>
+    </div>
+
+    <!-- Product Section -->
+
+
+    <!-- Product 1 -->
+    <section id="products" class="max-w-6xl mx-auto px-4 py-10">
+        <h3 class="text-2xl font-semibold mb-6">Our Collection</h3>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+
+            <!-- Card 1 -->
+            <div class="bg-white border rounded-lg p-4 shadow-sm hover:shadow-lg transition flex flex-col items-center">
+                <div class="w-full h-48 bg-gray-100 flex items-center justify-center rounded-md">
+                    <img src="https://m.media-amazon.com/images/I/61sq8uys0aL._AC_SX679_.jpg"
+                        alt="Luxury Analogue Watch" class="h-full object-contain">
+                </div>
+                <h4 class="mt-3 text-sm font-semibold text-gray-900 text-center">OLEVS Watches Luxury  Men's- Watch</h4>
+                <p class="text-gray-700 font-bold text-sm mt-1">₹3,420.00</p>
+                <button onclick="window.location.href='buy.html'"
+                    class="mt-2 bg-black text-white px-4 py-1 rounded-md text-sm font-medium hover:bg-gray-800">Order
+                    Now</button>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white border rounded-lg p-4 shadow-sm hover:shadow-lg transition flex flex-col items-center">
+                <div class="w-full h-48 bg-gray-100 flex items-center justify-center rounded-md">
+                    <img src="https://images-cdn.ubuy.co.in/675fbca9122a102cce119b05-poedagar-men-watch-stainless-steel-top.jpg"
+                        alt="POEDAGAR Sport Watch" class="h-full object-contain">
+                </div>
+                <h4 class="mt-3 text-sm font-semibold text-gray-900 text-center">POEDAGAR Black Stainless Steel Sport
+                    Watch</h4>
+                <p class="text-gray-700 font-bold text-sm mt-1">₹8,999</p>
+                <button
+                    class="mt-2 bg-black text-white px-4 py-1 rounded-md text-sm font-medium hover:bg-gray-800">Order
+                    Now</button>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white border rounded-lg p-4 shadow-sm hover:shadow-lg transition flex flex-col items-center">
+                <div class="w-full h-48 bg-gray-100 flex items-center justify-center rounded-md">
+                    <img src="https://m.media-amazon.com/images/I/81DowfjuS3L.SX569.jpg" alt="Galactic Blue"
+                        class="h-full object-contain">
+                </div>
+                <h4 class="mt-3 text-sm font-semibold text-gray-900 text-center">Galactic Blue - FK131 Watch For Men's
+                </h4>
+                <p class="text-gray-700 font-bold text-sm mt-1">₹6,432</p>
+                <button
+                    class="mt-2 bg-black text-white px-4 py-1 rounded-md text-sm font-medium hover:bg-gray-800">Order
+                    Now</button>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="bg-white border rounded-lg p-4 shadow-sm hover:shadow-lg transition flex flex-col items-center">
+                <div class="w-full h-48 bg-gray-100 flex items-center justify-center rounded-md">
+                    <img src="https://m.media-amazon.com/images/I/71rduONqG+L.SX679.jpg" alt="FEICE Luxury"
+                        class="h-full object-contain">
+                </div>
+                <h4 class="mt-3 text-sm font-semibold text-gray-900 text-center">FEICE Luxury Men's MF0285G.02 Watch
+                </h4>
+                <p class="text-gray-700 font-bold text-sm mt-1">₹6,432</p>
+                <button
+                    class="mt-2 bg-black text-white px-4 py-1 rounded-md text-sm font-medium hover:bg-gray-800">Order
+                    Now</button>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="bg-white border rounded-lg p-4 shadow-sm hover:shadow-lg transition flex flex-col items-center">
+                <div class="w-full h-48 bg-gray-100 flex items-center justify-center rounded-md">
+                    <img src="https://m.media-amazon.com/images/I/81rq9k4gh+L.UY1000.jpg" alt="Retro Skeleton Watch"
+                        class="h-full object-contain">
+                </div>
+                <h4 class="mt-2 text-sm font-semibold text-gray-900 text-center">Retro Manual Mechanical Skeleton Watch
+                </h4>
+                <p class="text-gray-700 font-bold text-sm mt-1">₹4,599</p>
+                <button
+                    class="mt-2 bg-black text-white px-4 py-1 rounded-md text-sm font-medium hover:bg-gray-800">Order
+                    Now</button>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="bg-white border rounded-lg p-4 shadow-sm hover:shadow-lg transition flex flex-col items-center">
+                <div class="w-full h-48 bg-gray-100 flex items-center justify-center rounded-md">
+                    <img src="https://thewatchlounge.co/wp-content/uploads/2020/12/6-20.jpg" alt="FORSINING Watch"
+                        class="h-full object-contain">
+                </div>
+                <h4 class="mt-2 text-sm font-semibold text-gray-900 text-center">FORSINING H009M Royal Classic Watch For
+                    Men</h4>
+                <p class="text-gray-700 font-bold text-sm mt-1">₹3,345</p>
+                <button
+                    class="mt-2 bg-black text-white px-4 py-1 rounded-md text-sm font-medium hover:bg-gray-800">Order
+                    Now</button>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="bg-white border rounded-lg p-4 shadow-sm hover:shadow-lg transition flex flex-col items-center">
+                <div class="w-full h-48 bg-gray-100 flex items-center justify-center rounded-md">
+                    <img src="https://s.alicdn.com/@sc04/kf/H6dd6209795674626acf407caba7da111l/Winner-Transparent-Fashion-Diamond-Luminous-Gear-Movement-Royal-Design-Men-Top-Brand-Luxury-Male-Mechanical-Skeleton-Wrist-Watch.jpg"
+                        alt="Winner Watch" class="h-full object-contain">
+                </div>
+                <h4 class="mt-2 text-sm font-semibold text-gray-900 text-center">WINNER 8067 Fancy Silver Men Mechanism
+                    Watch</h4>
+                <p class="text-gray-700 font-bold text-sm mt-1">₹6,432</p>
+                <button
+                    class="mt-2 bg-black text-white px-4 py-1 rounded-md text-sm font-medium hover:bg-gray-800">Order
+                    Now</button>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="bg-white border rounded-lg p-4 shadow-sm hover:shadow-lg transition flex flex-col items-center">
+                <div class="w-full h-48 bg-gray-100 flex items-center justify-center rounded-md">
+                    <img src="https://s.alicdn.com/@sc04/kf/Hee7dfb4560bd41d49b215bbaf414b276n.jpg?avif=close&webp=close"
+                        alt="Car Wheel Spin Watch" class="h-full object-contain">
+                </div>
+                <h4 class="mt-2 text-sm font-semibold text-gray-900 text-center">Car Wheel Spin Rotate 3D Hollow Steel
+                    Quartz Watch</h4>
+                <p class="text-gray-700 font-bold text-sm mt-1">₹3,600</p>
+                <button
+                    class="mt-2 bg-black text-white px-4 py-1 rounded-md text-sm font-medium hover:bg-gray-800">Order
+                    Now</button>
+            </div>
+
+            <!-- Card 9 -->
+            <div class="bg-white border rounded-lg p-4 shadow-sm hover:shadow-lg transition flex flex-col items-center">
+                <div class="w-full h-48 bg-gray-100 flex items-center justify-center rounded-md">
+                    <img src="https://timeavenue.com/wp-content/uploads/2025/01/Tudor-Royal-M28600-0003-1-600x800.webp"
+                        alt="Tudor Royal" class="h-full object-contain">
+                </div>
+                <h4 class="mt-2 text-sm font-semibold text-gray-900 text-center">Tudor Royal Men Watch M28600-0003</h4>
+                <p class="text-gray-700 font-bold text-sm mt-1">₹2,50,000</p>
+                <button
+                    class="mt-2 bg-black text-white px-4 py-1 rounded-md text-sm font-medium hover:bg-gray-800">Order
+                    Now</button>
+            </div>
+
+            <!-- Card 10 -->
+            <div class="bg-white border rounded-lg p-4 shadow-sm hover:shadow-lg transition flex flex-col items-center">
+                <div class="w-full h-48 bg-gray-100 flex items-center justify-center rounded-md">
+                    <img src="https://timeavenue.com/wp-content/uploads/2025/05/Tudor-Black-Bay-Chrono-Men-Watch-M79360N-0014-1-600x800.webp"
+                        alt="Tudor Black Bay" class="h-full object-contain">
+                </div>
+                <h4 class="mt-2 text-sm font-semibold text-gray-900 text-center">Tudor Black Bay Chrono Men Watch
+                    M79360N-0014</h4>
+                <p class="text-gray-700 font-bold text-sm mt-1">₹5,45,000</p>
+                <button
+                    class="mt-2 bg-black text-white px-4 py-1 rounded-md text-sm font-medium hover:bg-gray-800">Order
+                    Now</button>
+            </div>
+
+            <!-- Card 11 -->
+            <div class="bg-white border rounded-lg p-4 shadow-sm hover:shadow-lg transition flex flex-col items-center">
+                <div class="w-full h-48 bg-gray-100 flex items-center justify-center rounded-md">
+                    <img src="https://th.bing.com/th/id/OIP.KhWyHccLsPsVI8JQCUaKqQHaKa?w=130&h=184&c=7&r=0&o=7&pid=1.7&rm=3"
+                        alt="Rolex Datejust" class="h-full object-contain">
+                </div>
+                <h4 class="mt-2 text-sm font-semibold text-gray-900 text-center">Rolex Datejust 36mm Men's (Steel &
+                    Yellow Gold)</h4>
+                <p class="text-gray-700 font-bold text-sm mt-1">₹4,78,435</p>
+                <button
+                    class="mt-2 bg-black text-white px-4 py-1 rounded-md text-sm font-medium hover:bg-gray-800">Order
+                    Now</button>
+            </div>
+
+            <!-- Card 12 -->
+            <div class="bg-white border rounded-lg p-4 shadow-sm hover:shadow-lg transition flex flex-col items-center">
+                <div class="w-full h-48 bg-gray-100 flex items-center justify-center rounded-md">
+                    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQezyGSIMjM30icTN89GGVmkkEWDJIUFCGpgBE5Sz8S4--JFZfNLCEg-iEfiLJxwYo4f2iZN_3iXjjeHIbSpgtXiJgoMXoCiR3LzHacOVDsWQZcvT2ZuGAc"
+                        alt="Titan Green Dial" class="h-full object-contain">
+                </div>
+                <h4 class="mt-2 text-sm font-semibold text-gray-900 text-center">Titan Green Dial Gold Stainless Steel
+                    Strap Watch for Men</h4>
+                <p class="text-gray-700 font-bold text-sm mt-1">₹1,795</p>
+                <button
+                    class="mt-2 bg-black text-white px-4 py-1 rounded-md text-sm font-medium hover:bg-gray-800">Order
+                    Now</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Responsive product grid -->
+    <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+
+    <!-- ================= Footer Start ================= -->
+    <footer class="bg-gray-900 text-gray-300 mt-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <!-- Logo and About -->
+            <div>
+                <h2 class="text-2xl font-bold text-orange-400 mb-3">Het Watch Store</h2>
+                <p class="text-sm">
+                    Premium & Luxury watches for Men and Women.
+                    Original, stylish, and affordable collections delivered at your doorstep.
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h3 class="text-lg font-semibold text-white mb-3">Quick Links</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-orange-400">Home</a></li>
+                    <li><a href="#" class="hover:text-orange-400">Our Collection</a></li>
+                    <li><a href="#" class="hover:text-orange-400">About Us</a></li>
+                    <li><a href="#" class="hover:text-orange-400">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Customer Service -->
+            <div>
+                <h3 class="text-lg font-semibold text-white mb-3">Customer Service</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-orange-400">Track Order</a></li>
+                    <li><a href="#" class="hover:text-orange-400">Return Policy</a></li>
+                    <li><a href="#" class="hover:text-orange-400">FAQs</a></li>
+                    <li><a href="#" class="hover:text-orange-400">Support</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div>
+                <h3 class="text-lg font-semibold text-white mb-3">Contact Us</h3>
+                <p class="text-sm">📍 Patan, Gujarat, India</p>
+                <p class="text-sm">📞 +91 72628 28738</p>
+                <p class="text-sm">📧 freefire1pro789@gmail.com</p>
+                <div class="flex space-x-3 mt-3">
+                    <a href="#" class="text-gray-400 hover:text-orange-400">🌐</a>
+                    <a href="#" class="text-gray-400 hover:text-orange-400">📘</a>
+                    <a href="#" class="text-gray-400 hover:text-orange-400">📷</a>
+                    <a href="#" class="text-gray-400 hover:text-orange-400">🐦</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="border-t border-gray-700 mt-6 py-4 text-center text-sm text-gray-400">
+            © 2025 Het Watch Store. All Rights Reserved.
+        </div>
+    </footer>
+    <!-- ================= Footer End ================= -->
+
+</body>
+
+</html>
