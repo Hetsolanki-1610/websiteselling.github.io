@@ -7,208 +7,185 @@
     <title>Chai Corner</title>
     <meta name="description" content="Simple chai (tea) website with menu, prices, and contact form." />
     <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='80'>☕</text></svg>">
-    
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='80'>☕</text></svg>">
+
     <style>
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+            background: #fff9f2;
+            color: #2f2a25;
+            margin: 0;
+            padding: 0;
+        }
+
         html,
         body {
             margin: 0;
             padding: 0
         }
-        .section {
-            margin-bottom: 10px;
-        }
 
-        :root {
-            --bg: #fff9f2;
-            --text: #2f2a25;
-            --muted: #6b625b;
-            --brand: #d97706;
-            --brand-2: #f59e0b;
-            --card: #ffffff;
-            --line: #efe7dd;
-        }
-
-        * {
-            box-sizing: border-box
-        }
-
-
-        body {
-            font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none
-        }
 
         img {
-            display: block;
             max-width: 100%;
-            height: auto
+            height: auto;
+            display: block;
         }
 
-        .container {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 0 16px
-        }
-
-        /* Header */
         header {
             position: sticky;
             top: 0;
-            z-index: 20;
-            background: rgba(255, 255, 255, .8);
-            backdrop-filter: saturate(150%) blur(8px);
-            border-bottom: 1px solid var(--line)
+            z-index: 50;
+            background: rgba(255, 255, 255, .95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #efe7dd;
         }
 
         nav {
             height: 64px;
             display: flex;
             align-items: center;
-            justify-content: space-between
+            justify-content: space-between;
         }
 
         .nav-links {
             display: flex;
-            gap: 10px;
-            font-size: 14px
+            gap: 12px;
+            font-size: 14px;
         }
 
         .btn {
             display: inline-block;
-            padding: 10px 16px;
-            border-radius: 12px;
-            border: 1px solid var(--line);
-            background: var(--card);
-            transition: .2s ease;
+            padding: 8px 14px;
+            border-radius: 10px;
+            border: 1px solid #efe7dd;
+            background: #ffffff;
+            transition: 0.2s;
+            font-size: 14px;
         }
 
         .btn.primary {
-            background: var(--brand);
-            color: #fff;
-            border-color: transparent
+            background: #d97706;
+            color: white;
+            border-color: transparent;
         }
 
         .btn:hover {
-            transform: translateY(-1px)
+            transform: translateY(-1px);
         }
 
         /* Hero */
         .hero {
-            padding: 48px 0
+            padding: 40px 0;
         }
 
         .hero-wrap {
             display: grid;
             gap: 24px;
-            align-items: center
+            align-items: center;
         }
 
-        @media(min-width:880px) {
+        @media(min-width: 880px) {
             .hero-wrap {
-                grid-template-columns: 1.1fr .9fr
+                grid-template-columns: 1.1fr .9fr;
             }
-        }
-
-        .tag {
-            display: inline-block;
-            font-size: 12px;
-            color: #8a7d73;
-            background: #fff;
-            border: 1px solid var(--line);
-            padding: 6px 10px;
-            border-radius: 999px
         }
 
         .title {
-            font-size: 36px;
-            line-height: 1.15;
-            margin: 10px 0 8px
+            font-size: 28px;
+            line-height: 1.3;
+            margin-bottom: 10px;
         }
 
-        @media(min-width:640px) {
+        @media(min-width: 640px) {
             .title {
-                font-size: 48px
+                font-size: 40px;
             }
         }
 
-        .lead {
-            color: var(--muted)
+        /* About & Contact Section */
+        .about,
+        .contact {
+            display: grid;
+            gap: 40px;
+        }
+
+        @media(min-width: 900px) {
+
+            .about,
+            .contact {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
         }
 
         .card-img img {
-            width: 398px;
-            border-radius: 30px;
-            border: 1px solid black;
-            margin-top: 90px;
-
-            /* Shadow add kiya */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3),
-                0 6px 10px rgba(0, 0, 0, 0.15);
-        }
-
-
-        .card-imgg img {
-            height: 350px;
-            width: 398px;
             border-radius: 20px;
-            overflow: hidden;
-            border: 1 solid;
-            margin-top: -33px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3),
-                0 6px 10px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
-
-        @media(min-width:500px) {
-            .card-imgg img {
-                margin: -30px;
-            }
-        }
-
-        /* About */
-        .about {
-            display: grid;
-            gap: 100px;
-            padding-left: 23px;
-        }
-
-        @media(min-width:900px) {
-            .about {
-                grid-template-columns: 1fr 1fr
-            }
-        }
-
 
         /* Footer */
         footer {
-            border-top: 1px solid var(--line);
-            padding: 22px 0;
-            color: #7a6f67;
-            text-align: center
+            background: #111827;
+            color: #d1d5db;
+            padding: 40px 20px;
         }
 
-        .reveal {
-            opacity: 0;
-            margin-left: 60px;
-            transform: translateY(12px);
+        footer h3 {
+            color: white;
+            margin-bottom: 10px;
         }
 
-        .reveal.show {
-            opacity: 1;
-            transform: none;
-            margin-top: 40px;
-            height: 355px;
-            transition: opacity .5s ease, transform .5s ease
+        footer a:hover {
+            color: #f97316;
         }
 
-        article img {
-            width: 11px;
+        /* Popup */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 40;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 380px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            z-index: 50;
+        }
+
+        .popup input,
+        .popup select,
+        .popup button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .popup button.submit-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+        }
+
+        .popup button.close-btn {
+            background: #f44336;
+            color: white;
+            border: none;
         }
 
         .lpo a,
@@ -233,71 +210,6 @@
             background: linear-gradient(45deg, rgba(166, 109, 48, 1), rgba(255, 229, 142, 1) 50%, rgba(224, 176, 87, 1) 100%);
             color: white;
         }
-
-        /* Popup styles */
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 9999;
-        }
-
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 400px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            z-index: 10000;
-        }
-
-        .popup h3 {
-            margin-top: 0;
-            font-size: 20px;
-            text-align: center;
-        }
-
-        .popup input,
-        .popup select,
-        .popup button {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
-
-        .popup button.submit-btn:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-
-        .popup button.submit-btn {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-        }
-
-        .popup button.close-btn {
-            background-color: #f44336;
-            color: white;
-            border: none;
-        }
-        .wop{
-            margin-top: 44px;
-        }
-       
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -306,11 +218,12 @@
 
     <!-- Header -->
     <header>
-        <div class="container">
+        <div class="container mx-auto px-4">
             <nav>
-                <a href="#" class="row" style="gap:10px"><span
-                        style="font-size:24px">☕</span><strong>Aapani cha</strong></a>
-                <div class="nav-links">
+                <a href="#" class="flex items-center gap-2">
+                    <span style="font-size:24px">☕</span><strong>Aapani Cha</strong>
+                </a>
+                <div class="nav-links hidden sm:flex">
                     <a href="#menu">Menu</a>
                     <a href="#about">About</a>
                     <a href="#contact">Contact</a>
@@ -322,20 +235,19 @@
 
     <!-- Hero -->
     <section class="hero">
-        <div class="container hero-wrap">
-            <div class="reveal">
-                <span class="tag">Fresh • Hand-brewed • Since 2024</span>
-                <h1 class="title">A Cup of <span style="color:var(--brand)">Aapani cha</span><br />to Brighten Your Day
+        <div class="container mx-auto px-4 hero-wrap">
+            <div>
+                <span class="tag text-sm text-gray-600">Fresh • Hand-brewed • Since 2024</span>
+                <h1 class="title">A Cup of <span class="text-orange-600">Aapani Cha</span><br />to Brighten Your Day
                 </h1>
-                <p class="lead">Balanced spices, creamy milk, and the aroma you love. Try our ginger, elaichi, and tulsi
-                    specials.</p>
-                <div style="display:flex;gap:10px;margin-top:14px">
+                <p class="text-gray-600">Balanced spices, creamy milk, and the aroma you love.</p>
+                <div class="flex gap-2 mt-4">
                     <a class="btn primary" href="#menu">See Menu</a>
                     <a class="btn" href="#contact">Visit / Contact</a>
                 </div>
             </div>
-            <div class="card-imgg reveal op">
-                <img src="img/chaipati.jpg" alt="Hot chai with spices" />
+            <div class="card-img">
+                <img src="img/chaipati.jpg" alt="Hot chai" />
             </div>
         </div>
     </section>
@@ -357,10 +269,11 @@
                 <p class="text-gray-600 text-sm mb-4">Strong & Aromatic Loose Leaf Black Tea | Rich Flavor | No Added
                     Flavors or Preservatives</p>
                 <a href="https://www.amazon.in/Aapani-Cha-Premium-Loose-Black/dp/B0FN4F1375/"
-                    class="block bg-gradient-to-r from-orange-500 to-orange-600 text-white py-2 rounded-lg hover:from-orange-600 hover:to-orange-700 transition">Buy to Amazon
-                    </a>
-                <button class="lop" data-product="Aapani Cha Gold Tea, 250g"
-                    onclick="openLoginForm(this)">BUY NOW</button>
+                    class="block bg-gradient-to-r from-orange-500 to-orange-600 text-white py-2 rounded-lg hover:from-orange-600 hover:to-orange-700 transition">Buy
+                    to Amazon
+                </a>
+                <button class="lop" data-product="Aapani Cha Gold Tea, 250g" onclick="openLoginForm(this)">BUY
+                    NOW</button>
             </div>
 
             <!-- Product 2 -->
@@ -372,9 +285,10 @@
                 <p class="text-gray-600 text-sm mb-4">Strong & Aromatic Assam Tea Leaves | Handpicked for best flavor
                 </p>
                 <a href="https://www.amazon.in/Cha-Aromatic-Handpicked-Flavors-Preservatives/dp/B0FN4HP4HG/"
-                    class="block bg-gradient-to-r from-orange-500 to-orange-600 text-white py-2 rounded-lg hover:from-orange-600 hover:to-orange-700 transition">Buy to Amazon</a>
-                <button class="lop" data-product="Aapani Cha Black Tea, 500g"
-                    onclick="openLoginForm(this)">BUY NOW</button>
+                    class="block bg-gradient-to-r from-orange-500 to-orange-600 text-white py-2 rounded-lg hover:from-orange-600 hover:to-orange-700 transition">Buy
+                    to Amazon</a>
+                <button class="lop" data-product="Aapani Cha Black Tea, 500g" onclick="openLoginForm(this)">BUY
+                    NOW</button>
             </div>
 
             <!-- Product 3 -->
@@ -385,9 +299,10 @@
                 <p class="text-green-600 font-bold mb-4">₹28</p>
                 <p class="text-gray-600 text-sm mb-4">PREMIUM QUALITY: Loose leaf black tea from India best chai</p>
                 <a href="#"
-                    class="block bg-gradient-to-r from-orange-500 to-orange-600 text-white py-2 rounded-lg hover:from-orange-600 hover:to-orange-700 transition">Buy to Amazon</a>
-                <button class="lop" data-product="Aapani Cha Premium Gold Tea 500g"
-                    onclick="openLoginForm(this)">BUY NOW</button>
+                    class="block bg-gradient-to-r from-orange-500 to-orange-600 text-white py-2 rounded-lg hover:from-orange-600 hover:to-orange-700 transition">Buy
+                    to Amazon</a>
+                <button class="lop" data-product="Aapani Cha Premium Gold Tea 500g" onclick="openLoginForm(this)">BUY
+                    NOW</button>
             </div>
 
         </div>
@@ -397,7 +312,7 @@
     <section id="about" class="section" style="background:#fff">
         <div class="container about">
             <div class="reveal">
-                <h2>About Us</h2>
+                <h2>📌.About Us</h2>
                 <p class="lead">
                     Aapani Cha was founded in 2023 by the Patel brothers, who discovered their passion for tea
                     while helping in their family Kirana store in Becharaji. After learning everything from
@@ -422,44 +337,44 @@
     </section>
 
     <!-- Contact Section -->
-<section class="bg-white py-16">
-  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <section class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
-    <!-- Left Side: Contact Info -->
-    <div>
-      <h2 class="text-3xl font-bold mb-6">Contact Us</h2>
-      <p class="text-gray-700 mb-4 leading-relaxed">
-        अगर आप हमारे premium tea blends, bulk orders या dealership में interested हैं,  
-        तो हमसे सीधे जुड़ सकते हैं।  
-      </p>
+            <!-- Left Side: Contact Info -->
+            <div>
+                <h2 class="text-3xl font-bold mb-6">Contact Us</h2>
+                <p class="text-gray-700 mb-4 leading-relaxed">
+                    अगर आप हमारे premium tea blends, bulk orders या dealership में interested हैं,
+                    तो हमसे सीधे जुड़ सकते हैं।
+                </p>
 
-      <ul class="space-y-3 text-gray-800">
-        <li>📍 <strong>Head Office:</strong> Becharaji, Gujarat, India</li>
-        <li>📞 <strong>Phone:</strong> +91 7698960192
-        </li>
-        <li>📧 <strong>Email:</strong> freefire1pro789@gmail.com</li>
-        <li>⏰ <strong>Business Hours:</strong> Mon – Sat, 9:00 AM – 7:00 PM</li>
-      </ul>
+                <ul class="space-y-3 text-gray-800">
+                    <li>📍 <strong>Head Office:</strong> Becharaji, Gujarat, India</li>
+                    <li>📞 <strong>Phone:</strong> +91 7698960192
+                    </li>
+                    <li>📧 <strong>Email:</strong> freefire1pro789@gmail.com</li>
+                    <li>⏰ <strong>Business Hours:</strong> Mon – Sat, 9:00 AM – 7:00 PM</li>
+                </ul>
 
-      <div class="mt-6">
-        <a href="https://wa.me/917698960192" target="_blank"
-           class="bg-green-600 text-white px-5 py-2 rounded-lg shadow-md hover:bg-green-700 transition">
-          💬 WhatsApp Us
-        </a>
-      </div>
-    </div>
+                <div class="mt-6">
+                    <a href="https://wa.me/917698960192" target="_blank"
+                        class="bg-green-600 text-white px-5 py-2 rounded-lg shadow-md hover:bg-green-700 transition">
+                        💬 WhatsApp Us
+                    </a>
+                </div>
+            </div>
 
-    <!-- Right Side: Location Map -->
-    <div class="shadow-lg rounded-2xl overflow-hidden border">
-      <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3680.8478014765746!2d72.3809245748007!3d23.389497302887936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e773e18b1d26f%3A0xf847df7e3f42e511!2sBecharaji%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1695200000000!5m2!1sen!2sin" 
-        width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-    </div>
+            <!-- Right Side: Location Map -->
+            <div class="shadow-lg rounded-2xl overflow-hidden border">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3680.8478014765746!2d72.3809245748007!3d23.389497302887936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e773e18b1d26f%3A0xf847df7e3f42e511!2sBecharaji%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1695200000000!5m2!1sen!2sin"
+                    width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
 
-  </div>
-</section>
+        </div>
+    </section>
 
 
 
@@ -554,46 +469,46 @@
             </div>
         </div>
 
-         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 wop">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 wop">
 
-    <!-- Column 1 -->
-    <div>
-      <h3 class="text-xl font-bold text-orange-400 mb-4">
-        Aapani Cha – “Apno ke liye, Apno jaisi Chai”
-      </h3>
-      <p class="text-sm leading-relaxed">
-        हमारा मकसद है हर कप में वो स्वाद देना जो दिल को छू जाए।<br />
-        Aapani Cha एक <strong>premium chai manufacturing brand</strong> है,
-        जहाँ हर पत्ते को carefully चुना जाता है और traditional तरीके से तैयार किया जाता है,
-        ताकि आपको मिले ekdum desi, strong aur refreshing taste.
-      </p>
-    </div>
+            <!-- Column 1 -->
+            <div>
+                <h3 class="text-xl font-bold text-orange-400 mb-4">
+                    Aapani Cha – “Apno ke liye, Apno jaisi Chai”
+                </h3>
+                <p class="text-sm leading-relaxed">
+                    हमारा मकसद है हर कप में वो स्वाद देना जो दिल को छू जाए।<br />
+                    Aapani Cha एक <strong>premium chai manufacturing brand</strong> है,
+                    जहाँ हर पत्ते को carefully चुना जाता है और traditional तरीके से तैयार किया जाता है,
+                    ताकि आपको मिले ekdum desi, strong aur refreshing taste.
+                </p>
+            </div>
 
-    <!-- Column 2 -->
-    <div>
-      <h3 class="text-lg font-semibold mb-3">हम specialize करते हैं:</h3>
-      <p class="text-sm leading-relaxed">
-        ✅ Premium Tea Leaves (CTC, Green, Masala, आदि)<br />
-        ✅ Bulk Orders ke liye Supply<br />
-        ✅ Cafe & Hotels ke liye Custom Blends<br />
-        ✅ Hygienic Packaging with Quality Assurance
-      </p>
-    </div>
+            <!-- Column 2 -->
+            <div>
+                <h3 class="text-lg font-semibold mb-3">हम specialize करते हैं:</h3>
+                <p class="text-sm leading-relaxed">
+                    ✅ Premium Tea Leaves (CTC, Green, Masala, आदि)<br />
+                    ✅ Bulk Orders ke liye Supply<br />
+                    ✅ Cafe & Hotels ke liye Custom Blends<br />
+                    ✅ Hygienic Packaging with Quality Assurance
+                </p>
+            </div>
 
-    <!-- Column 3 -->
-    <div>
-      <h3 class="text-lg font-semibold mb-3">Connect With Us</h3>
-      <p class="text-sm leading-relaxed mb-4">
-        अगर आप भी अपने customers को authentic, aromatic aur flavorful chai serve करना चाहते हैं,
-        तो जुड़िए Aapani Cha से – जहाँ हर घूँट में है अपनेपन का एहसास।
-      </p>
-      <p class="text-sm font-medium text-orange-400">
-        📦 Pan India Delivery Available <br />
-        📞 Call/WhatsApp for bulk orders & dealership
-      </p>
-    </div>
+            <!-- Column 3 -->
+            <div>
+                <h3 class="text-lg font-semibold mb-3">Connect With Us</h3>
+                <p class="text-sm leading-relaxed mb-4">
+                    अगर आप भी अपने customers को authentic, aromatic aur flavorful chai serve करना चाहते हैं,
+                    तो जुड़िए Aapani Cha से – जहाँ हर घूँट में है अपनेपन का एहसास।
+                </p>
+                <p class="text-sm font-medium text-orange-400">
+                    📦 Pan India Delivery Available <br />
+                    📞 Call/WhatsApp for bulk orders & dealership
+                </p>
+            </div>
 
-  </div>
+        </div>
         <div class="mt-8 border-t border-gray-800 pt-4 text-sm text-center text-gray-500">
             © <span id="year"></span> Aapani Cha. All rights reserved.
         </div>
@@ -601,7 +516,7 @@
 
     <!-- JavaScript -->
     <script>
-         document.getElementById('year').textContent = new Date().getFullYear();
+        document.getElementById('year').textContent = new Date().getFullYear();
         // Set current year
         document.getElementById('year').textContent = new Date().getFullYear();
 
