@@ -281,8 +281,10 @@
           class="block bg-gradient-to-r from-orange-500 to-orange-600 text-white py-2 rounded-lg hover:from-orange-600 hover:to-orange-700 transition">Buy
           On Amazon
         </a>
-        <button class="lop" data-product="Aapani Cha Gold Tea, 250g" onclick="openLoginForm(this)">BUY
-          NOW</button>
+       <button class="lop" 
+        data-product="Aapani Cha Gold Tea, 250g" 
+        data-price="199" 
+        onclick="openLoginForm(this)">BUY NOW</button>
       </div>
 
       <!-- Product 2 -->
@@ -296,8 +298,10 @@
         <a href="https://www.amazon.in/Cha-Aromatic-Handpicked-Flavors-Preservatives/dp/B0FN4HP4HG/"
           class="block bg-gradient-to-r from-orange-500 to-orange-600 text-white py-2 rounded-lg hover:from-orange-600 hover:to-orange-700 transition">Buy
           On Amazon</a>
-        <button class="lop" data-product="Aapani Cha Black Tea, 500g" onclick="openLoginForm(this)">BUY
-          NOW</button>
+       <button class="lop" 
+        data-product="Aapani Cha Black Tea, 500g" 
+        data-price="299" 
+        onclick="openLoginForm(this)">BUY NOW</button>
       </div>
 
       <!-- Product 3 -->
@@ -305,12 +309,15 @@
         <img src="https://m.media-amazon.com/images/I/413Zm9M-YYL._SX300_SY300_QL70_FMwebp_.jpg" alt="Tulsi Chai"
           class="mx-auto h-40 object-cover mb-4 rounded-lg" />
         <h3 class="font-semibold text-lg text-gray-800 mb-2">Aapani Cha Premium Gold Tea 500g</h3>
-        <p class="text-green-600 font-bold mb-4">₹28</p>
+        <p class="text-green-600 font-bold mb-4">₹288</p>
         <p class="text-gray-600 text-sm mb-4">PREMIUM QUALITY: Loose leaf black tea from India best chai</p>
         <a href="#"
           class="block bg-gradient-to-r from-orange-500 to-orange-600 text-white py-2 rounded-lg hover:from-orange-600 hover:to-orange-700 transition">Buy
           On Amazon</a>
-        <button class="lop" data-product="Aapani Cha Premium Gold Tea 500g" onclick="openLoginForm(this)">BUY
+        <button class="lop" 
+        data-product="Aapani Cha Premium Gold Tea 500g" 
+        data-price="288" 
+        onclick="openLoginForm(this)">BUY NOW</button>
           NOW</button>
       </div>
 
@@ -424,9 +431,12 @@
       <input type="text" id="loginProduct" readonly />
 
       <!-- WhatsApp Button -->
-      <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white p-3 rounded-lg font-semibold">
-        Send Details to WhatsApp
-      </button>
+     <!-- WhatsApp Button -->
+<button type="button" class="w-full bg-green-500 hover:bg-green-600 text-white p-3 rounded-lg font-semibold"
+        onclick="sendWhatsApp()">
+  Send Details to WhatsApp
+</button>
+
 
       <p class="text-gray-500 text-sm mt-2 text-center">
         मैसेज भेजने के बाद payment QR दिखाई देगा
@@ -557,65 +567,52 @@
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
     // Open login form and set product name
-    function openLoginForm(button) {
-      const product = button.getAttribute('data-product');
-      document.getElementById('loginProduct').value = product;
-      document.getElementById('loginOverlay').style.display = 'block';
-      document.getElementById('loginPopup').style.display = 'block';
-      document.body.style.overflow = 'hidden';  // disable background scroll
-    }
+   function openLoginForm(button) {
+    const product = button.getAttribute('data-product');
+    const price = button.getAttribute('data-price'); // Add this attribute in HTML
+    document.getElementById('loginProduct').value = product;
+    
+    // Set QR dynamically
+    const qrImg = document.querySelector('#paymentSection img');
+    qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=9909732645@ibl&pn=Aapani+Cha&am=${price}&cu=INR&tn=${encodeURIComponent(product)}`;
+    qrImg.onclick = () => window.location.href = `upi://pay?pa=9909732645@ibl&pn=Aapani+Cha&am=${price}&cu=INR&tn=${encodeURIComponent(product)}`;
 
-    function closeLoginForm() {
-      document.getElementById('loginOverlay').style.display = 'none';
-      document.getElementById('loginPopup').style.display = 'none';
-      document.body.style.overflow = 'auto';    // enable background scroll again
-    }
+    document.getElementById('loginOverlay').style.display = 'block';
+    document.getElementById('loginPopup').style.display = 'block';
+    document.body.style.overflow = 'hidden';  
+}
 
-    document.getElementById('loginOverlay').addEventListener('click', closeLoginForm);
+   function sendWhatsApp() {
+    const name = document.getElementById('loginName').value.trim();
+    const phone = document.getElementById('loginPhone').value.trim();
+    const state = document.getElementById('loginState').value.trim();
+    const city = document.getElementById('loginCity').value.trim();
+    const flat = document.getElementById('loginFlat').value.trim();
+    const address = document.getElementById('loginAddress').value.trim();
+    const product = document.getElementById('loginProduct').value.trim();
 
-    // On form submit send details to WhatsApp
-    document.getElementById('loginForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      // ✅ Get form values (make sure input IDs match exactly in your HTML)
-      const name = document.getElementById('loginName').value.trim();
-      const phone = document.getElementById('loginPhone').value.trim();
-      const state = document.getElementById('loginState').value.trim();
-      const city = document.getElementById('loginCity').value.trim();
-      const flat = document.getElementById('loginFlat').value.trim();
-      const address = document.getElementById('loginAddress').value.trim();
-      const product = document.getElementById('loginProduct').value.trim();
-
-      // Agar koi field empty hai to rok do
-      if (!name || !phone || !state || !city || !flat || !address || !product) {
+    if (!name || !phone || !state || !city || !flat || !address || !product) {
         alert("Please fill all fields!");
         return;
-      }
+    }
 
-      // WhatsApp number — replace with your actual number without +
-      const whatsappNumber = '918200942931';
+    // WhatsApp number
+    const whatsappNumber = '918200942931';
 
-      // ✅ Message format
-      const message =
-        `🛒 *New Order Details* 🛒\n\n` +
-        `👤 Name: ${name}\n📞 Phone: ${phone}\n🏠 State: ${state}\n🏙️ City: ${city}\n🏢 Flat/Apt No.: ${flat}\n📍 Address: ${address}\n📦 Product: ${product}`;
+    // Message
+    const message = `🛒 *New Order Details* 🛒\n\n` +
+                    `👤 Name: ${name}\n📞 Phone: ${phone}\n🏠 State: ${state}\n🏙️ City: ${city}\n🏢 Flat/Apt No.: ${flat}\n📍 Address: ${address}\n📦 Product: ${product}`;
 
-      // Encode message
-      const encodedMessage = encodeURIComponent(message);
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
-      // WhatsApp URL
-      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    // Open WhatsApp in new tab
+    window.open(whatsappURL, '_blank');
 
+    // Show payment section
+    document.getElementById("paymentSection").classList.remove("hidden");
+}
 
-      // Open WhatsApp in new tab
-      window.open(whatsappURL, '_blank');
-
-      // Close form and reset
-
-
-      // Show Payment Section
-      document.getElementById("paymentSection").classList.remove("hidden");
-    });
   </script>
 
 </body>
