@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Buy Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff9f2;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn.amazon {
+            background: #ff9900;
+            color: white;
+        }
+
+        .btn.now {
+            background: #4CAF50;
+            color: white;
+        }
+
+        #paymentSection {
+            display: none;
+            background: #f3f3f3;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        img.product-img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Product Image -->
+        <img id="productImage" class="product-img" src="https://via.placeholder.com/400x200.png?text=Product+Image"
+            alt="Product Image" />
+
+        <!-- Product Title -->
+        <h2 id="productTitle">Aapani Cha Gold Tea, 250g</h2>
+        <p><strong>Price:</strong> ₹<span id="productPrice"></span></p>
+
+        <a id="amazonLink" href="#" target="_blank" class="btn amazon">Buy on Amazon</a>
+        <button id="buyNowBtn" class="btn now">Buy Now</button>
+
+        <!-- Form Section -->
+        <div id="formSection" style="display:none;">
+            <h3>Enter your details</h3>
+            <form id="orderForm">
+                <input type="text" id="loginName" placeholder="Enter your name" required />
+                <input type="tel" id="loginPhone" placeholder="Enter your phone number" required />
+                <input type="text" id="loginState" placeholder="Enter your State" required />
+                <input type="text" id="loginCity" placeholder="Enter your City" required />
+                <input type="text" id="loginFlat" placeholder="Flat / Apartment No." required />
+                <input type="text" id="loginAddress" placeholder="Enter your full address" required minlength="15" />
+                <!-- Product Name Input, readonly -->
+                <input type="text" id="loginProduct" readonly />
+                <button type="submit" class="btn now">Send to WhatsApp</button>
+                <p class="text-gray-500 text-sm mt-2 text-center">
+                    मैसेज भेजने के बाद payment QR दिखाई देगा
+                </p>
+            </form>
+        </div>
+
+        <!-- Payment Section -->
+        <div id="paymentSection">
+            <h3>Payment Options</h3>
+            <p>Use PhonePe / Google Pay to complete payment.</p>
+            <img id="qrImage"
+                src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=9909732645@ibl&pn=Aapani+Cha&am=199&cu=INR&tn=Tea+Order"
+                alt="UPI QR" width="200" style="cursor:pointer;"
+                onclick="openUPI('upi://pay?pa=9909732645@ibl&pn=Aapani+Cha&am=199&cu=INR&tn=Tea+Order')" />
+            <p>UPI ID: ww9989812891@ybl</p>
+        </div>
+
+        <script>
+            // Parse URL parameters
+           
+            const product = params.get('product') || "Aapani Cha Gold Tea, 250g";
+            const price = params.get('price') || "199";
+            const amazon = params.get('amazon') || "https://www.amazon.in/Aapani-Cha-Premium-Loose-Black/dp/B0FN4F1375/";
+            const image = params.get('image') || "https://via.placeholder.com/400x200.png?text=Product+Image";
+
+            document.getElementById('productTitle').innerText = product;
+            document.getElementById('productPrice').innerText = price;
+            document.getElementById('amazonLink').href = amazon;
+            document.getElementById('productImage').src = image;
+            document.getElementById('loginProduct').value = product;
+
+            const buyNowBtn = document.getElementById('buyNowBtn');
+            const formSection = document.getElementById('formSection');
+            const paymentSection = document.getElementById('paymentSection');
+            const qrImage = document.getElementById('qrImage');
+
+            // Show form on Buy Now
+            buyNowBtn.addEventListener('click', () => {
+                formSection.style.display = 'block';
+            });
+
+            // Handle form submission
+            document.getElementById('orderForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const name = document.getElementById('loginName').value.trim();
+                const phone = document.getElementById('loginPhone').value.trim();
+                const state = document.getElementById('loginState').value.trim();
+                const city = document.getElementById('loginCity').value.trim();
+                const flat = document.getElementById('loginFlat').value.trim();
+                const address = document.getElementById('loginAddress').value.trim();
+                const product = document.getElementById('loginProduct').value.trim();
+
+                if (!name || !phone || !state || !city || !flat || !address || !product) {
+                    alert("Please fill all fields!");
+                    return;
+                }
+
+                const whatsappNumber = '918200942931';
+                const message = `🛒 New Order\nProduct: ${product}\nPrice: ₹${price}\nName: ${name}\nPhone: ${phone}\nAddress: ${flat}, ${address}, ${city}, ${state}`;
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+                window.open(whatsappURL, '_blank');
+
+                // Show payment section after sending message
+                paymentSection.style.display = 'block';
+                qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=9909732645@ibl&pn=Aapani+Cha&am=${price}&cu=INR&tn=Tea+Order`;
+            });
+
+            function openUPI(link) {
+                window.location.href = link;
+            }
+        </script>
+
+</body>
+
+</html>
