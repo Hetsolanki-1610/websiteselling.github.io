@@ -633,7 +633,7 @@
         } else if (product.includes("Premium Gold Tea 500g")) {
             amount = "28";
         }
-        upiLink = `upi://pay?pa=9909732645@ibl&pn=Aapani+Cha&am=${amount}&cu=INR&tn=${encodeURIComponent(product)}`;
+        upiLink = `upi://pay?pa=vardayinitea.316@idfcbank&pn=Aapani+Cha&am=${amount}&cu=INR&tn=${encodeURIComponent(product)}`;
         const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upiLink)}`;
         document.getElementById('paymentQR').src = qrUrl;
 
