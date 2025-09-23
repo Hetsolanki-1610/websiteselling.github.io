@@ -2,201 +2,42 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chai Corner</title>
-  <meta name="description" content="Simple chai (tea) website with menu, prices, and contact form." />
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='80'>☕</text></svg>">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Hero Banner</title>
   <style>
-    body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-      background: #fff9f2;
-      color: #2f2a25;
-      margin: 0;
-      padding: 0;
-    }
-
     html,
     body {
       margin: 0;
-      padding: 0
+      padding: 0;
+      overflow-x: hidden;
+      /* side scroll hata dega */
     }
 
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(255, 255, 255, .95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid #efe7dd;
-    }
-
-    nav {
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 12px;
-      font-size: 14px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 10px;
-      border: 1px solid #efe7dd;
-      background: #ffffff;
-      transition: 0.2s;
-      font-size: 14px;
-    }
-
-    .btn.primary {
-      background: #d97706;
-      color: white;
-      border-color: transparent;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-    }
-
-    /* Hero */
-    .hero {
-      padding: 40px 0;
-    }
-
-    .hero-wrap {
-      display: grid;
-      gap: 24px;
-      align-items: center;
-    }
-
-    @media(min-width: 880px) {
-      .hero-wrap {
-        grid-template-columns: 1.1fr .9fr;
-      }
-    }
-
-    .title {
-      font-size: 28px;
-      line-height: 1.3;
-      margin-bottom: 10px;
-    }
-
-    @media(min-width: 640px) {
-      .title {
-        font-size: 40px;
-      }
-    }
-
-    /* About & Contact Section */
-    .about,
-    .contact {
-      display: grid;
-      gap: 40px;
-    }
-
-    @media(min-width: 900px) {
-
-      .about,
-      .contact {
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-      }
-    }
-
-    .card-img img {
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Footer */
-    footer {
-      background: #111827;
-      color: #d1d5db;
-      padding: 40px 20px;
-    }
-
-    footer h3 {
-      color: white;
-      margin-bottom: 10px;
-    }
-
-    footer a:hover {
-      color: #f97316;
-    }
-
-    /* Popup */
-    /* Overlay */
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
-      display: none;
-      z-index: 999;
-    }
-
-    /* isko */
-
-    /* Popup */
-    .popup {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #fff;
-      padding: 25px;
+    a .lop {
       border-radius: 15px;
-      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
-      width: 90%;
-      max-width: 400px;
-      max-height: 80vh;
-      /* Important: limit popup height */
-      overflow-y: auto;
-      /* Important: enable scroll inside popup */
-      display: none;
+      height: 50px;
+      margin: 15px;
+      width: 20pc;
+      background-color: #333;
+      color: #fff;
     }
 
-
-    .popup input,
-    .popup select,
-    .popup button {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border-radius: 8px;
-      border: 1px solid #ccc;
+      a .lop:hover{
+      border: 1px solid;
+      border-radius: 15px;
+      color: #333;
+      background-color: #fff;
     }
 
-    .popup button.submit-btn {
-      background: #4CAF50;
-      color: white;
-      border: none;
+    .lop2 {
+      border-radius: 15px;
+      height: 50px;
+      margin: 15px;
+       width: 20pc;
+      background-color: #333;
+      color: #fff;
     }
-
-    .popup button.close-btn {
-      background: #f44336;
-      color: white;
-      border: none;
-    }
-
     .lpo a,
     .lpo button {
       display: block;
@@ -223,45 +64,75 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="bg-gray-100">
 
-  <!-- Header -->
-  <header>
-    <div class="container mx-auto px-4">
-      <nav>
-        <a href="#" class="flex items-center gap-2">
-          <span style="font-size:24px">☕</span><strong>Aapani Cha</strong>
-        </a>
-        <div class="nav-links hidden sm:flex">
-          <a href="#menu">Menu</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-          <a class="btn primary" href="#menu">Order Now</a>
-        </div>
-      </nav>
+  <nav class="bg-white shadow-md p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold  bgc">Aapani Cha</h1>
+    <button onclick="window.location.href='pop.html'" class="px-4 py-2"></button>
+  </nav>
+  <div>.</div>
+
+  <!-- Hero Banner -->
+  <section class="max-w-7xl mx-auto p-4 grid grid-cols-1 md:grid-cols-2 gap-6 bg-white rounded-lg shadow-lg">
+
+    <!-- Product Images -->
+    <div class="flex gap-4">
+      <!-- Thumbnails -->
+      <div class="flex flex-col gap-2">
+        <img src="https://m.media-amazon.com/images/I/61F5wJpmbnL.AC_UL320.jpg"
+          class="w- h-20 object-cover rounded cursor-pointer border-2 border-transparent hover:border-blue-500"
+          onclick="changeImage(this)">
+        <img src="https://m.media-amazon.com/images/I/61QibjvWi8L._SY679_.jpg"
+          class="w-20 h-20 object-cover rounded cursor-pointer border-2 border-transparent hover:border-blue-500"
+          onclick="changeImage(this)">
+
+
+      </div>
+
+      <!-- Main Image -->
+      <div class="relative flex-1">
+        <img id="mainImage" src="https://m.media-amazon.com/images/I/61F5wJpmbnL.AC_UL320.jpg"
+          class="w- h-full object-cover rounded-lg">
+
+        <!-- Slider Buttons -->
+        <button onclick="prevImage()"
+          class="absolute top-1/2 left-2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-200">
+          ⬅
+        </button>
+        <button onclick="nextImage()"
+          class="absolute top-1/2 right-2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-200">
+          ➡
+        </button>
+      </div>
     </div>
-  </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container mx-auto px-4 hero-wrap">
-      <div>
-        <span class="tag text-sm text-gray-600">Fresh • Hand-brewed • Since 2024</span>
-        <h1 class="title">A Cup of <span class="text-orange-600">Aapani Cha</span><br />to Brighten Your Day
-        </h1>
-        <p class="text-gray-600">Balanced spices, creamy milk, and the aroma you love.</p>
-        <div class="flex gap-2 mt-4">
-          <a class="btn primary" href="#menu">See Menu</a>
-          <a class="btn" href="#contact">Visit / Contact</a>
+    <!-- Product Details -->
+    <div class="flex flex-col justify-center">
+      <h1 class="text-3xl font-bold mb-2">Aapani Cha Premium Gold Tea, Loose Leaf Black Tea, 500g.
+      </h1>
+      <p class="text-gray-600 mb-4">Brand: Aapni Cha.</p>
+      <span class="text-2xl font-semibold text-green-600 mb-4">₹3,420.00</span>
+      <!-- tages yaha dalo  -->
+
+      <a href="https://www.amazon.in/Cha-Aromatic-Handpicked-Flavors-Preservatives/dp/B0FN4HP4HG/"><button class="lop" >BUY
+        On Amazon</button></a>
+      <button class="lop2" data-product="Aapani Cha Gold Tea, 250g" onclick="openLoginForm(this)">BUY
+        NOW</button>
+
+      <div class="mt-6">
+        <h2 class="text-lg font-semibold mb-2">colors:</h2>
+        <div class="grid grid-cols-3 gap-2">
+          <img src="https://m.media-amazon.com/images/I/61ma1Bkd+OL.SY741.jpg"
+            class="rounded-lg hover:scale-105 transition-transform cursor-pointer">
+          <img width="150" src="https://m.media-amazon.com/images/I/61F5wJpmbnL.AC_UL320.jpg"
+            class="rounded-lg hover:scale-105 transition-transform cursor-pointer">
         </div>
       </div>
-      <div class="card-img">
-        <img src="img/chaipati.jpg" alt="Hot chai" />
-      </div>
     </div>
+
   </section>
 
-  <!-- Menu -->
+  <!-- Product 1 -->
   <section id="menu" class="py-16">
     <div class="container mx-auto px-4 text-center mb-10">
       <h2 class="text-3xl font-bold mb-4 text-gray-800">Menu</h2>
@@ -317,143 +188,80 @@
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about" class="section" style="background:#fff">
-    <div class="container about">
-      <div class="reveal">
-        <h2>📌.About Us</h2>
-        <p class="lead">
-          Aapani Cha was founded in 2023 by the Patel brothers, who discovered their passion for tea
-          while helping in their family Kirana store in Becharaji. After learning everything from
-          tea tasting to packaging and distribution in 2022, they decided to bring their love of tea
-          to the masses.
-        </p>
-        <p>
-          Within just two years, Aapani Cha expanded across Gujarat and earned the prestigious
-          ISO 9001:2000 certification in 2024 for maintaining the highest quality standards.
-          Today, Aapani Cha is loved in India and abroad for its authentic taste and premium blends.
-        </p>
-        <ul style="margin:10px 0 0; padding-left:18px; color:var(--muted)">
-          <li>Premium quality & fresh blends</li>
-          <li>ISO 9001:2000 certified</li>
-          <li>Popular varieties: Yellow, Elaichi, Gold Pattian, Masala, Adrak & Tulsi Tea</li>
-        </ul>
-      </div>
-      <div class="card-img ooo">
-        <img src="img/Screenshot 2025-09-10 222010.png" alt="Tea being poured" />
-      </div>
-    </div>
-  </section>
 
-  <!-- Contact Section -->
-  <section class="bg-white py-16">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+  <!-- Login Popup -->
+  <!-- Overlay -->
+  <div class="overlay fixed inset-0 bg-black bg-opacity-50 hidden z-40" id="loginOverlay"></div>
 
-      <!-- Left Side: Contact Info -->
-      <div>
-        <h2 class="text-3xl font-bold mb-6">Contact Us</h2>
-        <p class="text-gray-700 mb-4 leading-relaxed">
-          अगर आप हमारे premium tea blends, bulk orders या dealership में interested हैं,
-          तो हमसे सीधे जुड़ सकते हैं।
-        </p>
+  <!-- Popup -->
+  <div class="popup fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+             bg-white p-6 rounded-lg shadow-lg w-96 hidden z-50 
+             max-h-[90vh] overflow-y-auto" id="loginPopup">
 
-        <ul class="space-y-3 text-gray-800">
-          <li>📍 <strong>Head Office:</strong> 19,OM AGRO ESTATE GODOWN
-            Road/Street: CHETHARIYAVEER PASE
-            City/Town/Village: Patan
-            District: Patan
-            State: Gujarat
-            PIN Code: 384265</li>
+    <h3 class="text-xl font-bold mb-4">Enter your Details</h3>
 
-          <li>📞 <strong>Phone:</strong> +91 8200942931
-          </li>
-          <li>📧 <strong>Email:</strong> Vardayinitea151@gmail.com</li>
-          <li>⏰ <strong>Business Hours:</strong> Mon – Sat, 8:00 AM – 7:00 PM</li>
-        </ul>
-
-        <div class="mt-6">
-          <a href="https://wa.me/918200942931" target="_blank"
-            class="bg-green-600 text-white px-5 py-2 rounded-lg shadow-md hover:bg-green-700 transition">
-            💬 WhatsApp Us
-          </a>
-        </div>
-      </div>
-
-      <!-- Right Side: Location Map -->
-      <div class="shadow-lg rounded-2xl overflow-hidden border">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d29199.658173335854!2d72.0907778!3d23.8201184!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjPCsDQ5JzI0LjQiTiA3MsKwMDUnMzYuNyJF!5e0!3m2!1sen!2sin!4v1757610455152!5m2!1sen!2sin"
-          width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <!-- <iframe
-                    src="https://maps.app.goo.gl/vU4zwrVBS84rB8YJ6"
-                    width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe> -->
-      </div>
-
-    </div>
-  </section>
-
-
-
-  <!-- Login Popup --> isko
-  <div class="overlay" id="loginOverlay"></div>
-  <div class="popup" id="loginPopup">
-    <h3>Enter your Details</h3>
-    <form id="loginForm">
+    <form id="loginForm" class="space-y-3">
       <!-- Name -->
-      <input type="text" id="loginName" placeholder="Enter your name" required />
+      <input type="text" id="loginName" placeholder="Enter your name" class="w-full border p-2 rounded" required />
 
       <!-- Phone -->
-      <input type="tel" id="loginPhone" placeholder="Enter your phone number" required />
+      <input type="tel" id="loginPhone" placeholder="Enter your phone number" class="w-full border p-2 rounded"
+        required />
 
       <!-- State -->
-      <input type="text" id="loginState" placeholder="Enter your State" required />
+      <input type="text" id="loginState" placeholder="Enter your State" class="w-full border p-2 rounded" required />
 
       <!-- City -->
-      <input type="text" id="loginCity" placeholder="Enter your City" required />
+      <input type="text" id="loginCity" placeholder="Enter your City" class="w-full border p-2 rounded" required />
 
       <!-- Flat / Apartment -->
-      <input type="text" id="loginFlat" placeholder="Flat / Apartment No." required />
+      <input type="text" id="loginFlat" placeholder="Flat / Apartment No." class="w-full border p-2 rounded" required />
 
       <!-- Address -->
-      <input type="text" id="loginAddress" placeholder="Enter your full address" required minlength="15" />
+      <input type="text" id="loginAddress" placeholder="Enter your full address" class="w-full border p-2 rounded"
+        required minlength="15" />
 
       <!-- Product -->
-      <input type="text" id="loginProduct" readonly />
+      <input type="text" id="loginProduct" class="w-full border p-2 rounded bg-gray-100" readonly />
 
       <!-- WhatsApp Button -->
       <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white p-3 rounded-lg font-semibold">
         Send Details to WhatsApp
       </button>
+    </form>
 
-      <p class="text-gray-500 text-sm mt-2 text-center">
-        मैसेज भेजने के बाद payment QR दिखाई देगा
-      </p>
+    <p class="text-gray-500 text-sm mt-2 text-center">
+      मैसेज भेजने के बाद payment QR दिखाई देगा
+    </p>
 
-      <!-- Payment Section -->
-      <div id="paymentSection" class="mt-6 bg-gray-50 p-4 rounded-lg shadow-inner hidden">
-        <h3 class="text-lg font-bold text-gray-700 mb-2 text-center">Payment Options</h3>
-        <p class="text-gray-600 text-sm text-center mb-3">PhonePe / Google Pay से भुगतान करें</p>
-        <div class="flex justify-center gap-6 flex-wrap">
-          <div class="qr">
-            <img
-              src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=9909732645@ibl&pn=Aapani+Cha&am=199&cu=INR&tn=Tea+Order"
-              width="200" alt="UPI QR Code"
-              onclick="window.location.href='upi://pay?pa=9909732645@ibl&pn=Aapani+Cha&am=199&cu=INR&tn=Tea+Order'">
-            <p>Tap QR to open UPI app</p>
-          </div>
-          <p class="text-gray-500 text-sm mt-2 text-center">
-            UPI Id-ww9989812891@ybl
-          </p>
+    <!-- Payment Section -->
+    <div id="paymentSection" class="mt-6 bg-gray-50 p-4 rounded-lg shadow-inner hidden">
+      <h3 class="text-lg font-bold text-gray-700 mb-2 text-center">Payment Options</h3>
+      <p class="text-gray-600 text-sm text-center mb-3">PhonePe / Google Pay से भुगतान करें</p>
+      <div class="flex justify-center gap-6 flex-wrap">
+        <div class="qr text-center">
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=vardayinitea.316@idfcbank&pn=Aapani+Cha&am=199&cu=INR&tn=Tea+Order"
+            width="200" alt="UPI QR Code"
+            onclick="window.location.href='upi://pay?pa=vardayinitea.316@idfcbank&pn=Aapani+Cha&am=199&cu=INR&tn=Tea+Order'">
+          <p class="text-sm mt-1">Tap QR to open UPI app</p>
         </div>
       </div>
-  </div>
-  </form>
+      <p class="text-gray-500 text-sm mt-2 text-center">
+        UPI Id - vardayinitea.316@idfcbank
+      </p>
+    </div>
   </div>
 
 
+
+
+
+  <!-- Tailwind CDN जोड़ना (यदि पुराना setup नहीं है) -->
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
+  <!-- ================= Footer Start ================= -->
+ 
   <!-- Footer -->
   <footer class="bg-gray-900 text-gray-300 py-10">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -540,45 +348,57 @@
       © <span id="year"></span> Aapani Cha. All rights reserved.
     </div>
   </footer>
+  
+  <!-- ================= Footer End ================= -->
+  <!-- small script to set current year -->
 
-  <!-- JavaScript -->
   <script>
-    // Current year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    let images = [
+      "https://m.media-amazon.com/images/I/61QibjvWi8L._SY679_.jpg",
 
-    // Reveal animation on scroll
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('show');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.2 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+
+    ];
+    let currentIndex = 0;
+
+    function changeImage(element) {
+      document.getElementById("mainImage").src = element.src.replace("/80", "/500");
+      currentIndex = images.indexOf(element.src.replace("/80", "/500"));
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      document.getElementById("mainImage").src = images[currentIndex];
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      document.getElementById("mainImage").src = images[currentIndex];
+    }
+
+    // Current year
 
     // Open login form and set product name
     function openLoginForm(button) {
       const product = button.getAttribute('data-product');
       document.getElementById('loginProduct').value = product;
-      document.getElementById('loginOverlay').style.display = 'block';
-      document.getElementById('loginPopup').style.display = 'block';
-      document.body.style.overflow = 'hidden';  // disable background scroll
+      document.getElementById('loginOverlay').classList.remove('hidden');
+      document.getElementById('loginPopup').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
     }
 
+    // Close form
     function closeLoginForm() {
-      document.getElementById('loginOverlay').style.display = 'none';
-      document.getElementById('loginPopup').style.display = 'none';
-      document.body.style.overflow = 'auto';    // enable background scroll again
+      document.getElementById('loginOverlay').classList.add('hidden');
+      document.getElementById('loginPopup').classList.add('hidden');
+      document.body.style.overflow = 'auto';
     }
-
     document.getElementById('loginOverlay').addEventListener('click', closeLoginForm);
 
-    // On form submit send details to WhatsApp
+    // Submit form
     document.getElementById('loginForm').addEventListener('submit', function (e) {
       e.preventDefault();
 
-      // ✅ Get form values (make sure input IDs match exactly in your HTML)
       const name = document.getElementById('loginName').value.trim();
       const phone = document.getElementById('loginPhone').value.trim();
       const state = document.getElementById('loginState').value.trim();
@@ -587,36 +407,24 @@
       const address = document.getElementById('loginAddress').value.trim();
       const product = document.getElementById('loginProduct').value.trim();
 
-      // Agar koi field empty hai to rok do
       if (!name || !phone || !state || !city || !flat || !address || !product) {
         alert("Please fill all fields!");
         return;
       }
 
-      // WhatsApp number — replace with your actual number without +
       const whatsappNumber = '918200942931';
-
-      // ✅ Message format
       const message =
         `🛒 *New Order Details* 🛒\n\n` +
         `👤 Name: ${name}\n📞 Phone: ${phone}\n🏠 State: ${state}\n🏙 City: ${city}\n🏢 Flat/Apt No.: ${flat}\n📍 Address: ${address}\n📦 Product: ${product}`;
-
-      // Encode message
       const encodedMessage = encodeURIComponent(message);
-
-      // WhatsApp URL
       const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
-
-      // Open WhatsApp in new tab
       window.open(whatsappURL, '_blank');
-
-      // Close form and reset
-
 
       // Show Payment Section
       document.getElementById("paymentSection").classList.remove("hidden");
     });
+
   </script>
 
 </body>
