@@ -547,6 +547,21 @@
                     </p>
                 </div>
             </div>
+              // On form submit send details to WhatsApp
+   <!-- Rating button section initially hidden -->
+<div id="ratingButtonSection" style="display:none; text-align:center; margin-top:20px;">
+    <button onclick="openRating()" 
+        style="padding:10px 20px; background:#f97316; color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">
+        Give Your Rating
+    </button>
+</div>
+
+<!-- Rating Popup -->
+<div class="popup" id="ratingPopup" style="display:none;">
+    <h3>Rate Our Tea!</h3>
+    <div id="reviewStars"></div>
+    <button onclick="closeRating()" style="margin-top:10px; padding:8px 12px; background:#4CAF50; color:white; border:none; border-radius:5px;">Close</button>
+</div>
     </div>
     </form>
     </div>
@@ -681,43 +696,56 @@
 
         document.getElementById('loginOverlay').addEventListener('click', closeLoginForm);
 
-        // On form submit send details to WhatsApp
-      document.getElementById('loginForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+      
 
-    const name = document.getElementById('loginName').value.trim();
-    const phone = document.getElementById('loginPhone').value.trim();
-    const state = document.getElementById('loginState').value.trim();
-    const city = document.getElementById('loginCity').value.trim();
-    const flat = document.getElementById('loginFlat').value.trim();
-    const address = document.getElementById('loginAddress').value.trim();
-    const product = document.getElementById('loginProduct').value.trim();
 
-    if (!name || !phone || !state || !city || !flat || !address || !product) {
-        alert("Please fill all fields!");
-        return;
+    // --- Step 1: WhatsApp send + Payment Section show (tumhara existing code already handle kar raha) ---
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        // ... existing WhatsApp code
+
+        // Show Payment Section
+        document.getElementById("paymentSection").classList.remove("hidden");
+    });
+
+    // --- Step 2: Simulate Payment Complete ---
+    // Add onclick handler on QR or real payment detection
+    document.querySelectorAll('#paymentSection img').forEach(qr => {
+        qr.addEventListener('click', function() {
+            // Hide form and payment
+            document.getElementById('loginPopup').style.display = 'none';
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.body.style.overflow = 'auto';
+
+            // Show rating button
+            document.getElementById('ratingButtonSection').style.display = 'block';
+        });
+    });
+
+    // --- Step 3: Rating popup ---
+    function openRating() {
+        document.getElementById('ratingPopup').style.display = 'block';
+        // Render stars dynamically
+        const starHTML = [...Array(5)].map((_,i) => {
+            return `<label style="cursor:pointer; font-size:30px;">
+                <input type="radio" name="rating" value="${5-i}" style="display:none"/>
+                ★
+            </label>`;
+        }).join('');
+        document.getElementById('reviewStars').innerHTML = starHTML;
+
+        document.querySelectorAll('input[name="rating"]').forEach(r => {
+            r.addEventListener('change', ()=> {
+                alert(`Thanks for rating ${r.value} stars!`);
+                closeRating();
+            });
+        });
     }
 
-    const whatsappNumber = '918200942931';
-    const message =
-        `🛒 *New Order Details* 🛒\n\n` +
-        `👤 Name: ${name}\n📞 Phone: ${phone}\n🏠 State: ${state}\n🏙 City: ${city}\n🏢 Flat/Apt No.: ${flat}\n📍 Address: ${address}\n📦 Product: ${product}`;
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    function closeRating() {
+        document.getElementById('ratingPopup').style.display = 'none';
+    }
 
-    // ✅ Open WhatsApp immediately in same click event (browser allows popup)
-    const whatsappWindow = window.open(whatsappURL, '_blank');
-    
-    // Show Payment Section
-    document.getElementById("paymentSection").classList.remove("hidden");
-
-    // Redirect after 4 seconds
-    setTimeout(() => {
-        // Close WhatsApp window only if needed
-        if (whatsappWindow) whatsappWindow.close(); 
-        window.location.href = "about.html";
-    }, 4000);
-});
 
 
         });
