@@ -682,7 +682,7 @@
         document.getElementById('loginOverlay').addEventListener('click', closeLoginForm);
 
         // On form submit send details to WhatsApp
-       document.getElementById('loginForm').addEventListener('submit', function (e) {
+      document.getElementById('loginForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
     const name = document.getElementById('loginName').value.trim();
@@ -705,17 +705,18 @@
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
-    // Open WhatsApp in new tab first
-    window.open(whatsappURL, '_blank');
-
+    // ✅ Open WhatsApp immediately in same click event (browser allows popup)
+    const whatsappWindow = window.open(whatsappURL, '_blank');
+    
     // Show Payment Section
-    const payment = document.getElementById("paymentSection");
-    payment.classList.remove("hidden");
+    document.getElementById("paymentSection").classList.remove("hidden");
 
-    // Delay redirect 4 seconds after showing payment
+    // Redirect after 4 seconds
     setTimeout(() => {
+        // Close WhatsApp window only if needed
+        if (whatsappWindow) whatsappWindow.close(); 
         window.location.href = "about.html";
-    }, 3000);
+    }, 4000);
 });
 
 
