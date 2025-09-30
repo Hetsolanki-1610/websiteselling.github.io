@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Review & Star Rating Demo</title>
+  <style>
+  /* Default gray color for stars */
+  input[type="radio"] + svg {
+    color: gray;
+  }
+
+  /* When radio is checked, color the star yellow */
+  input[type="radio"]:checked + svg,
+  input[type="radio"]:checked ~ label svg {
+    color: #facc15; /* Tailwind yellow-400 color */
+  }
+
+  /* Hover effect: highlight stars on hover */
+  label:hover svg,
+  label:hover ~ label svg {
+    color: #fcd34d; /* Tailwind yellow-300 */
+  }
+</style>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <nav class="bg-white shadow p-4 flex justify-between items-center">
+    <div class="font-bold">Chai Corner - Demo</div>
+    <div class="space-x-4">
+      <button data-link="home" class="nav-btn px-3 py-1 rounded hover:bg-gray-100">Home</button>
+      <button data-link="about" class="nav-btn px-3 py-1 rounded hover:bg-gray-100">About</button>
+      <button id="openAdmin" class="px-3 py-1 bg-indigo-600 text-white rounded">Admin Ad</button>
+    </div>
+  </nav>
+
+  <main id="app" class="p-6 max-w-3xl mx-auto">
+    <!-- JS will render pages here -->
+  </main>
+
+  <!-- Admin modal (for adding ad content) -->
+  <div id="adminModal" class="fixed inset-0 hidden items-center justify-center bg-black/40">
+    <div class="bg-white rounded-lg p-6 w-11/12 md:w-1/2">
+      <h3 class="font-semibold mb-2">Admin: Add / Edit Page Ad (HTML allowed)</h3>
+      <textarea id="adHtml" rows="6" class="w-full p-2 border rounded mb-3" placeholder="Paste ad HTML or simple text here"></textarea>
+      <div class="flex justify-end gap-2">
+        <button id="saveAd" class="px-4 py-2 bg-green-600 text-white rounded">Save</button>
+        <button id="closeAdmin" class="px-4 py-2 bg-gray-200 rounded">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simple SPA rendering (home & about)
+    const app = document.getElementById('app');
+    const STORAGE_KEY = 'chai_reviews_v1';
+    const AD_KEY = 'chai_page_ad_v1';
+
+    // Utilities
+    const saveReviews = (reviews) => localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews));
+    const loadReviews = () => JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    const saveAd = (html) => localStorage.setItem(AD_KEY, html || '');
+    const loadAd = () => localStorage.getItem(AD_KEY) || '';
+
+    // Navigation
+    document.querySelectorAll('.nav-btn').forEach(b => b.addEventListener('click', (e)=>{
+      navigateTo(e.target.dataset.link);
+    }));
+
+    document.getElementById('openAdmin').addEventListener('click', ()=>{
+      document.getElementById('adminModal').classList.remove('hidden');
+      document.getElementById('adHtml').value = loadAd();
+    });
+    document.getElementById('closeAdmin').addEventListener('click', ()=>{
+      document.getElementById('adminModal').classList.add('hidden');
+    });
+    document.getElementById('saveAd').addEventListener('click', ()=>{
+      const html = document.getElementById('adHtml').value;
+      saveAd(html);
+      document.getElementById('adminModal').classList.add('hidden');
+      // re-render current page to show ad update
+      render(currentPage);
+    });
+
+    // Star rating helper: create clickable stars
+    function starInput(name, current=0){
+      let html = '<div class="flex gap-1 items-center">';
+      for(let i=5;i>=1;i--){
+        html += `\n  <label class="cursor-pointer">\n    <input type=\"radio\" name=\"${name}\" value=\"${i}\" class=\"hidden\" ${current==i? 'checked' : ''}/>\n    <svg class=\"w-6 h-6 inline-block" viewBox="0 0 24 24" fill="currentColor">\n      <path d=\"M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.4 8.168L12 18.896l-7.334 3.85 1.4-8.168L.132 9.21l8.2-1.192L12 .587z\"/>\n    </svg>\n  </label>`;
+      }
+      html += '\n</div>';
+      return html;
+    }
+
+    // Create Home page: review form & list; sends review to About page
+    function homePage(){
+      const reviews = loadReviews();
+      const adHtml = loadAd();
+      return `
+        <section class="space-y-6">
+          <div class="bg-white p-4 rounded shadow">
+            <h2 class="text-xl font-semibold mb-2">लोगों के Reviews</h2>
+            <div id="reviewList" class="space-y-3">
+              ${reviews.length? reviews.map(r=>renderReviewCard(r)).join('') : '<p class="text-gray-500">अभी कोई review नहीं। पहला review डालो!</p>'}
+            </div>
+          </div>
+
+          <div class="bg-white p-4 rounded shadow">
+            <h3 class="font-medium mb-2">Review भेजो (About पेज में add होगा)</h3>
+            <form id="reviewForm" class="space-y-3">
+              <input id="rname" placeholder="तुम्हारा नाम" class="w-full p-2 border rounded" required />
+              <textarea id="rmsg" placeholder="अपना review या message लिखो" class="w-full p-2 border rounded" required></textarea>
+              <div>
+                <label class="font-medium">Rating:</label>
+                <div id="ratingStars">${starInput('rating')}</div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded">Send to About</button>
+                <button type="button" id="saveLocal" class="px-4 py-2 bg-gray-200 rounded">Save Locally (Stay)</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="bg-white p-4 rounded shadow">
+            <h4 class="font-medium mb-2">Page Ad Preview</h4>
+            <div id="adArea" class="border p-3 rounded min-h-[60px]">${adHtml || '<p class="text-gray-400">Ad नहीं जोड़ा गया। Admin बटन से जोड़ें।</p>'}</div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderReviewCard(r){
+      return `
+        <div class="p-3 border rounded bg-gray-50">
+          <div class="flex justify-between items-center">
+            <div class="font-semibold">${escapeHtml(r.name)}</div>
+            <div>${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
+          </div>
+          <p class="text-sm mt-1">${escapeHtml(r.msg)}</p>
+        </div>
+      `;
+    }
+
+    // About page: shows reviews (including ones sent from Home)
+    function aboutPage(){
+      const reviews = loadReviews();
+      const adHtml = loadAd();
+      return `
+        <section class="space-y-6">
+          <div class="bg-white p-4 rounded shadow">
+            <h2 class="text-xl font-semibold">About Page</h2>
+            <p class="text-gray-600">यह पेज दिखाएगा जो भी review Home से भेजा गया।</p>
+          </div>
+
+          <div class="bg-white p-4 rounded shadow">
+            <h3 class="font-medium mb-3">Reviews</h3>
+            <div id="aboutReviews" class="space-y-3">
+              ${reviews.length? reviews.map(r=>renderReviewCard(r)).join('') : '<p class="text-gray-500">कोई review अभी नहीं।</p>'}
+            </div>
+          </div>
+
+          <div class="bg-white p-4 rounded shadow">
+            <h4 class="font-medium mb-2">Page Ad</h4>
+            <div id="adAreaAbout" class="border p-3 rounded min-h-[60px]">${adHtml || '<p class="text-gray-400">Ad नहीं जोड़ा गया।</p>'}</div>
+          </div>
+        </section>
+      `;
+    }
+
+    // Escape helper
+    function escapeHtml(s){
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    // Router
+    let currentPage = 'home';
+    function navigateTo(page){ currentPage = page; render(page); window.scrollTo(0,0);} 
+
+    function render(page='home'){
+      if(page==='about') app.innerHTML = aboutPage();
+      else app.innerHTML = homePage();
+
+      // Attach form listeners if home
+      if(page==='home'){
+        const form = document.getElementById('reviewForm');
+        form.addEventListener('submit', (e)=>{
+          e.preventDefault();
+          const name = document.getElementById('rname').value.trim();
+          const msg = document.getElementById('rmsg').value.trim();
+          const rating = Number(document.querySelector('input[name="rating"]:checked')?.value || 0);
+          if(!name || !msg || !rating){ alert('कृपया नाम, message और rating भरें'); return; }
+
+          // create review object
+          const review = { id: Date.now(), name, msg, rating };
+
+          // Save to reviews (this will make it appear on About page)
+          const reviews = loadReviews();
+          reviews.unshift(review); // newest first
+          saveReviews(reviews);
+
+          // Navigate to About page where review will be visible
+          navigateTo('about');
+        });
+
+        document.getElementById('saveLocal').addEventListener('click', ()=>{
+          const name = document.getElementById('rname').value.trim();
+          const msg = document.getElementById('rmsg').value.trim();
+          const rating = Number(document.querySelector('input[name="rating"]:checked')?.value || 0);
+          if(!name || !msg || !rating){ alert('कृपया नाम, message और rating भरें'); return; }
+          const review = { id: Date.now(), name, msg, rating };
+          const reviews = loadReviews();
+          reviews.unshift(review);
+          saveReviews(reviews);
+          // re-render home to show added review
+          render('home');
+        });
+      }
+
+      // After render, replace all adArea elements with stored HTML (unsafe innerHTML - demo only)
+      document.querySelectorAll('#adArea, #adAreaAbout').forEach(el=>{
+        const ad = loadAd();
+        if(ad) el.innerHTML = ad;
+      });
+    }
+    
+  function starInput(name, current=0){
+  let html = '<div class="flex gap-1 items-center flex-row-reverse">'; // reverse for correct CSS
+  for(let i=5;i>=1;i--){
+    html += `
+      <label class="cursor-pointer">
+        <input type="radio" name="${name}" value="${i}" class="hidden" ${current==i? 'checked' : ''}/>
+        <svg class="w-6 h-6 inline-block" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 .587l3.668 7.431 8.2 1.192-5.934 5.787 1.4 8.168L12 18.896l-7.334 3.85 1.4-8.168L.132 9.21l8.2-1.192L12 .587z"/>
+        </svg>
+      </label>
+    `;
+  }
+  html += '</div>';
+  return html;
+}
+
+
+    // init
+    render('home');
+
+    // Simple note: if you want to clear data during development
+    // localStorage.removeItem(STORAGE_KEY); localStorage.removeItem(AD_KEY);
+  </script>
+</body>
+</html>
