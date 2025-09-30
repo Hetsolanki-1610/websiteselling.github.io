@@ -682,52 +682,42 @@
         document.getElementById('loginOverlay').addEventListener('click', closeLoginForm);
 
         // On form submit send details to WhatsApp
-        document.getElementById('loginForm').addEventListener('submit', function (e) {
-            e.preventDefault();
+       document.getElementById('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-            // ✅ Get form values (make sure input IDs match exactly in your HTML)
-            const name = document.getElementById('loginName').value.trim();
-            const phone = document.getElementById('loginPhone').value.trim();
-            const state = document.getElementById('loginState').value.trim();
-            const city = document.getElementById('loginCity').value.trim();
-            const flat = document.getElementById('loginFlat').value.trim();
-            const address = document.getElementById('loginAddress').value.trim();
-            const product = document.getElementById('loginProduct').value.trim();
+    const name = document.getElementById('loginName').value.trim();
+    const phone = document.getElementById('loginPhone').value.trim();
+    const state = document.getElementById('loginState').value.trim();
+    const city = document.getElementById('loginCity').value.trim();
+    const flat = document.getElementById('loginFlat').value.trim();
+    const address = document.getElementById('loginAddress').value.trim();
+    const product = document.getElementById('loginProduct').value.trim();
 
-            // Agar koi field empty hai to rok do
-            if (!name || !phone || !state || !city || !flat || !address || !product) {
-                alert("Please fill all fields!");
-                return;
-            }
+    if (!name || !phone || !state || !city || !flat || !address || !product) {
+        alert("Please fill all fields!");
+        return;
+    }
 
-            // WhatsApp number — replace with your actual number without +
-            const whatsappNumber = '918200942931';
+    const whatsappNumber = '918200942931';
+    const message =
+        `🛒 *New Order Details* 🛒\n\n` +
+        `👤 Name: ${name}\n📞 Phone: ${phone}\n🏠 State: ${state}\n🏙 City: ${city}\n🏢 Flat/Apt No.: ${flat}\n📍 Address: ${address}\n📦 Product: ${product}`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
-            // ✅ Message format
-            const message =
-                `🛒 *New Order Details* 🛒\n\n` +
-                `👤 Name: ${name}\n📞 Phone: ${phone}\n🏠 State: ${state}\n🏙 City: ${city}\n🏢 Flat/Apt No.: ${flat}\n📍 Address: ${address}\n📦 Product: ${product}`;
+    // Open WhatsApp in new tab first
+    window.open(whatsappURL, '_blank');
 
-            // Encode message
-            const encodedMessage = encodeURIComponent(message);
+    // Show Payment Section
+    const payment = document.getElementById("paymentSection");
+    payment.classList.remove("hidden");
 
-            // WhatsApp URL
-            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    // Delay redirect 4 seconds after showing payment
+    setTimeout(() => {
+        window.location.href = "about.html";
+    }, 3000);
+});
 
-
-            // Open WhatsApp in new tab
-            window.open(whatsappURL, '_blank');
-
-            // Close form and reset
-
-
-            // Show Payment Section
-            document.getElementById("paymentSection").classList.remove("hidden");
-
-            setTimeout(() => {
-                window.location.href = "about.html";
-            }, 3000);
-        });
 
         });
     </script>
