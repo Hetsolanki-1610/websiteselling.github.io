@@ -2,756 +2,731 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chai Corner</title>
-  <meta name="description" content="Simple chai (tea) website with menu, prices, and contact form." />
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='80'>☕</text></svg>">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Het Web Studio — Custom Frontend Websites</title>
+    <meta name="description"
+        content="Buy modern, fast, responsive frontend websites. Built with HTML, Tailwind CSS & JavaScript. Get a custom landing page or full site in days." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa',
+                            500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a'
+                        },
+                    },
+                    boxShadow: {
+                        glow: '0 10px 25px rgba(59,130,246,0.25)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .op {
+            color: black;
+            background-color: #fff;
+        }
 
-  <style>
-    body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-      background: #fff9f2;
-      color: #2f2a25;
-      margin: 0;
-      padding: 0;
-    }
+        .relative img {
+            border-radius: 30px;
+        }
 
-    html,
-    body {
-      margin: 0;
-      padding: 0
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
+        .container-max {
+            max-width: 1200px;
+        }
 
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
+        .clip-blob {
+            clip-path: path('M73.8 -79.8C96.3 -61.7 110 -30.8 108.2 -1.8C106.4 27.1 89.1 54.2 66.5 77.1C43.9 100 15.9 118.7 -12.6 123.9C-41.1 129.1 -70 120.8 -87.9 100.3C-105.7 79.9 -112.5 47.3 -110.7 17.3C-108.9 -12.6 -98.6 -40 -82 -60.5C-65.4 -81.1 -42.6 -94.8 -17.1 -104.8C8.5 -114.8 34 -121.2 56.2 -111.3C78.4 -101.4 97.2 -75.3 73.8 -79.8Z');
+        }
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(255, 255, 255, .95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid #efe7dd;
-    }
+        /* Simple fade/slide animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: all 700ms ease;
+        }
 
-    nav {
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 12px;
-      font-size: 14px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 10px;
-      border: 1px solid #efe7dd;
-      background: #ffffff;
-      transition: 0.2s;
-      font-size: 14px;
-    }
-
-    .btn.primary {
-      background: #d97706;
-      color: white;
-      border-color: transparent;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-    }
-
-    /* Hero */
-    .hero {
-      padding: 40px 0;
-    }
-
-    .hero-wrap {
-      display: grid;
-      gap: 24px;
-      align-items: center;
-    }
-
-    @media(min-width: 880px) {
-      .hero-wrap {
-        grid-template-columns: 1.1fr .9fr;
-      }
-    }
-
-    .title {
-      font-size: 28px;
-      line-height: 1.3;
-      margin-bottom: 10px;
-    }
-
-    @media(min-width: 640px) {
-      .title {
-        font-size: 40px;
-      }
-    }
-
-    /* About & Contact Section */
-    .about,
-    .contact {
-      display: grid;
-      gap: 40px;
-    }
-
-    @media(min-width: 900px) {
-
-      .about,
-      .contact {
-        grid-template-columns: 1fr 1fr;
-        align-items: center;
-      }
-    }
-
-    .card-img img {
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Footer */
-    footer {
-      background: #111827;
-      color: #d1d5db;
-      padding: 40px 20px;
-    }
-
-    footer h3 {
-      color: white;
-      margin-bottom: 10px;
-    }
-
-    footer a:hover {
-      color: #f97316;
-    }
-
-    /* Popup */
-    /* Overlay */
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
-      display: none;
-      z-index: 999;
-    }
-
-    /* isko */
-
-    /* Popup */
-    .popup {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #fff;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
-      width: 90%;
-      max-width: 400px;
-      max-height: 80vh;
-      /* Important: limit popup height */
-      overflow-y: auto;
-      /* Important: enable scroll inside popup */
-      display: none;
-    }
-
-
-    .popup input,
-    .popup select,
-    .popup button {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-
-    .popup button.submit-btn {
-      background: #4CAF50;
-      color: white;
-      border: none;
-    }
-
-    .popup button.close-btn {
-      background: #f44336;
-      color: white;
-      border: none;
-    }
-
-    .lpo a,
-    .lpo button {
-      display: block;
-      width: 100%;
-      max-width: 280px;
-      margin: 8px auto 0;
-      padding: 10px 0;
-      border: none;
-      border-radius: 8px;
-      text-align: center;
-      font-weight: bold;
-    }
-
-    .lpo a {
-      background: linear-gradient(to right, #f97316, #ea580c);
-      color: white;
-    }
-
-    .lpo button {
-      background: linear-gradient(45deg, rgba(166, 109, 48, 1), rgba(255, 229, 142, 1) 50%, rgba(224, 176, 87, 1) 100%);
-      color: white;
-
-    }
-
-    /* Sidebar */
-    .sidebar {
-      height: 11115%;
-      width: 0;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background-color: #111;
-      overflow-x: hidden;
-      transition: 0.5s;
-      padding-top: 60px;
-      z-index: 1000;
-    }
-
-    .sidebar a {
-      padding: 15px 25px;
-      text-decoration: none;
-      font-size: 20px;
-      color: #f1f1f1;
-      display: block;
-      transition: 0.3s;
-    }
-
-    .sidebar a:hover {
-      background: #333;
-    }
-
-    /* Close button */
-    .sidebar .closebtn {
-      position: absolute;
-      top: 10px;
-      right: 20px;
-      font-size: 30px;
-      margin-left: 50px;
-      color: #f1f1f1;
-      cursor: pointer;
-    }
-
-    /* Open button */
-    .openbtn {
-      font-size: 20px;
-
-      cursor: pointer;
-      background-color: #111;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      margin: 15px;
-      border-radius: 5px;
-      transition: 0.3s;
-    }
-
-    .openbtn:hover {
-      background-color: #333;
-    }
-
-    /* From Uiverse.io by gharsh11032000 */
-    .button {
-      margin-bottom: 45px;
-      position: relative;
-      background: linear-gradient(135deg, #7b4397, #dc2430);
-      transform: translate(0%, 90%);
-      color: #e8e8e8;
-      font-size: 17px;
-      font-weight: 600;
-      border-radius: 10px;
-      width: 150px;
-      height: 60px;
-      border: none;
-      text-transform: uppercase;
-      cursor: pointer;
-      overflow: hidden;
-      box-shadow: 0 10px 20px rgba(51, 51, 51, 0.2);
-      transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
-    }
-  </style>
-  <script src="https://cdn.tailwindcss.com"></script>
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 
-<body>
+<body class="bg-neutral-950 text-white selection:bg-brand-400/40">
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-50 backdrop-blur bg-neutral-950/60 border-b border-white/5">
+        <nav class="mx-auto container-max px-4 py-3 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 group">
+                <span
+                    class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-fuchsia-500 shadow-glow group-hover:scale-105 transition">
+                    <!-- Sparkle icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M11.645 20.91l-.004-.002c-.837-.346-1.232-.519-1.54-.712a4.5 4.5 0 01-1.506-1.506c-.193-.308-.366-.703-.712-1.54l-.002-.004c-.125-.303-.188-.455-.256-.592a2.25 2.25 0 00-1.067-1.067c-.137-.068-.289-.131-.592-.256l-.004-.002c-.837-.346-1.232-.519-1.54-.712a4.5 4.5 0 01-1.506-1.506c-.193-.308-.366-.703-.712-1.54l-.002-.004a8.1 8.1 0 010-6.265l.002-.004c.346-.837.519-1.232.712-1.54a4.5 4.5 0 011.506-1.506c.308-.193.703-.366 1.54-.712l.004-.002a8.1 8.1 0 016.265 0l.004.002c.837.346 1.232.519 1.54.712a4.5 4.5 0 011.506 1.506c.193.308.366.703.712 1.54l.002.004a8.1 8.1 0 010 6.265l-.002.004c-.346.837-.519 1.232-.712 1.54a4.5 4.5 0 01-1.506 1.506c-.308.193-.703.366-1.54.712l-.004.002c-.303.125-.455.188-.592.256a2.25 2.25 0 00-1.067 1.067c-.068.137-.131.289-.256.592z" />
+                    </svg>
+                </span>
+                <span class="text-xl font-semibold tracking-tight">Het Web Studio</span>
+            </a>
 
-  <header>
+            <div class="hidden md:flex items-center gap-6 text-sm">
+                <a href="#services" class="hover:text-brand-300">Services</a>
+                <a href="#work" class="hover:text-brand-300">Work</a>
+                <a href="#pricing" class="hover:text-brand-300">Pricing</a>
+                <a href="#process" class="hover:text-brand-300">Process</a>
+                <a href="#faq" class="hover:text-brand-300">FAQ</a>
+                <a href="#contact"
+                    class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition border border-white/10">Contact</a>
+            </div>
 
-    <div class="container mx-auto px-4">
-      <nav>
-        <button class="openbtn" onclick="openNav()">☰ Menu</button>
-
-        <!-- Sidebar -->
-        <div id="mySidebar" class="sidebar">
-          <span class="closebtn" onclick="closeNav()">&times;</span>
-          <a onclick="window.location.href='home.html'">Home</a>
-          <a onclick="window.location.href='about.html'">About</a>
-          <a onclick="window.location.href='service.html'">Services</a>
-          <a href="#">Products</a>
-          <a href="#">Contact</a>
+            <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl bg-white/10 border border-white/10"
+                aria-label="Open menu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </nav>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden border-t border-white/5">
+            <div class="px-4 py-3 flex flex-col gap-3 text-sm">
+                <a href="#services" class="hover:text-brand-300">Services</a>
+                <a href="#work" class="hover:text-brand-300">Work</a>
+                <a href="#pricing" class="hover:text-brand-300">Pricing</a>
+                <a href="#process" class="hover:text-brand-300">Process</a>
+                <a href="#faq" class="hover:text-brand-300">FAQ</a>
+                <a href="#contact"
+                    class="px-4 py-2 rounded-xl text-center bg-white/10 hover:bg-white/20 transition border border-white/10">Contact</a>
+            </div>
         </div>
-        <a href="#" class="flex items-center gap-2">
-          <span style="font-size:24px">☕</span><strong>Aapani Cha</strong>
-        </a>
-        <div class="nav-links hidden sm:flex">
-          <a href="#menu">Menu</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
+    </header>
+
+    <!-- HERO -->
+    <section class="relative overflow-hidden">
+        <div class="absolute inset-0 -z-10">
+            <div
+                class="absolute -top-20 -right-20 h-96 w-96 clip-blob bg-gradient-to-br from-brand-500/30 to-fuchsia-500/20 blur-3xl">
+            </div>
+            <div
+                class="absolute -bottom-20 -left-20 h-[28rem] w-[28rem] clip-blob bg-gradient-to-br from-fuchsia-500/20 to-emerald-400/20 blur-3xl">
+            </div>
         </div>
-      </nav>
-    </div>
-  </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container mx-auto px-4 hero-wrap">
-      <div>
-        <span class="tag text-sm text-gray-600">Fresh • Hand-brewed • Since 2024</span>
-        <h1 class="title">A Cup of <span class="text-orange-600">Aapani Cha</span><br />to Brighten Your Day
-        </h1>
-        <p class="text-gray-600">Balanced spices, creamy milk, and the aroma you love.</p>
-        <div class="flex gap-2 mt-4">
-          <button class="button" onclick="window.location.href='pipe.html'">Bulk Order</button>
-          <button class="button" onclick="window.location.href='creat.html'">Creat a chai</button>
-          <!-- <a class="btn primary" href="#menu">See Menu</a> -->
+        <div class="mx-auto container-max px-4 pt-16 pb-20 lg:pt-24 lg:pb-28 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+                <span
+                    class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs">
+                    <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Taking new projects now
+                </span>
+                <h1 class="mt-4 text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight">
+                    Get a stunning, fast <span
+                        class="bg-gradient-to-r from-brand-400 to-fuchsia-400 bg-clip-text text-transparent">frontend
+                        website</span> that converts.
+                </h1>
+                <p class="mt-4 text-neutral-300 max-w-[55ch]">I build pixel-perfect landing pages, business websites and
+                    UI components using HTML, Tailwind CSS & JavaScript. Mobile-first, SEO-friendly, and blazing fast.
+                </p>
+                <div class="mt-6 flex flex-wrap items-center gap-3">
+                    <a href="#pricing"
+                        class="px-5 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 shadow-glow font-semibold">See
+                        Pricing</a>
+                    <a href="#work"
+                        class="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10">View Work</a>
+                </div>
+                <div class="mt-8 flex items-center gap-6 text-sm text-neutral-300">
+                    <div class="flex items-center gap-2"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 12l2 2 4-4" />
+                        </svg> 1–3 day delivery</div>
+                    <div class="flex items-center gap-2"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 8c-2.21 0-4 1.79-4 4v6h8v-6c0-2.21-1.79-4-4-4z" />
+                        </svg> 30-day support</div>
+                </div>
+            </div>
+
+            <div class="reveal">
+                <!-- Showcase mockup card -->
+                <!-- RIGHT: Image / Mockup card -->
+                <div class="relative ">
+                    <img
+                        src="https://www.sortlist.com/_next/image?url=https%3A%2F%2Fsortlist.gumlet.io%2Fsortlist-core-api%2Fb9wydl4dktzxtolwk8q5sqex1fj3%3Fw%3D960%26format%3Dauto&w=640&q=75" />
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="card-img">
-        <img src="apnichaa.jpg" alt="Hot chai" />
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Menu -->
-  <section id="menu" class="py-16">
-    <div class="container mx-auto px-4 text-center mb-10">
-      <h2 class="text-3xl font-bold mb-4 text-gray-800">Menu</h2>
-      <p class="text-gray-600">Explore our premium tea options with simple pricing in INR.</p>
-    </div>
-    <div class="container mx-auto px-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-
-      <!-- Product 1 -->
-      <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition lpo">
-        <img src="https://m.media-amazon.com/images/I/61F5wJpmbnL.AC_UL320.jpg" alt="Aapani Cha Gold Tea"
-          class="mx-auto h-40 object-contain mb-4 rounded-lg" />
-        <h3 class="font-semibold text-lg text-gray-800 mb-2">Aapani Cha Gold Tea, 250g</h3>
-        <p class="text-green-600 font-bold mb-4">₹130</p>
-        <p class="text-gray-600 text-sm mb-4">Strong & Aromatic Loose Leaf Black Tea | Rich Flavor | No Added
-          Flavors or Preservatives</p>
-        <button class="lop" onclick="window.location.href='buy3.html'">BUY
-          NOW</button>
-      </div>
-
-      <!-- Product 2 -->
-      <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition lpo">
-        <img src="https://m.media-amazon.com/images/I/61ma1Bkd+OL.SY741.jpg" alt="Aapani Cha Black Tea"
-          class="mx-auto h-40 object-contain mb-4 rounded-lg" />
-        <h3 class="font-semibold text-lg text-gray-800 mb-2">Aapani Cha Black Tea, 500g</h3>
-        <p class="text-green-600 font-bold mb-4">₹200</p>
-        <p class="text-gray-600 text-sm mb-4">Strong & Aromatic Assam Tea Leaves | Handpicked for best flavor
-        </p>
-        <button class="lop" onclick="window.location.href='blacktea.html'">BUY
-          NOW</button>
-      </div>
-
-      <!-- Product 3 -->
-      <div class=" bg-white p-6 rounded-xl shadow hover:shadow-lg transition lpo">
-        <img src="https://m.media-amazon.com/images/I/413Zm9M-YYL.SX300_SY300_QL70_FMwebp.jpg" alt="Tulsi Chai"
-          class="mx-auto h-40 object-cover mb-4 rounded-lg" />
-        <h3 class="font-semibold text-lg text-gray-800 mb-2">Aapani Cha Premium Gold Tea 500g</h3>
-        <p class="text-green-600 font-bold mb-4">₹200</p>
-        <p class="text-gray-600 text-sm mb-4">PREMIUM QUALITY: Loose leaf black tea from India best chai</p>
-        <button class="lop" data-product="Aapani Cha Premium Gold Tea 500g"
-          onclick="window.location.href='buy.html'">BUY
-          NOW</button>
-      </div>
-
-      <!-- Product 4 -->
-      <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition lpo">
-        <img src="https://m.media-amazon.com/images/I/61xu-B2KEtL._SY550_.jpg" alt="Tulsi Chai"
-          class="mx-auto h-40 object-cover mb-4 rounded-lg" />
-        <h3 class="font-semibold text-lg text-gray-800 mb-2">Aapani Cha Black Tea, Loose Leaf, 250g</h3>
-        <p class="text-green-600 font-bold mb-4">₹130</p>
-        <p class="text-gray-600 text-sm mb-4">PREMIUM QUALITY: Loose leaf black tea from India best chai</p>
-        <button class="lop" onclick="window.location.href='buy2.html'">BUY
-          NOW</button>
-      </div>
-      <!-- Product 5 -->
-      <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition lpo">
-        <img src="tea.jpg.jpg" alt="Tulsi Chai" class="mx-auto h-40 object-cover mb-4 rounded-lg" />
-        <h3 class="font-semibold text-lg text-gray-800 mb-2">Aapani Cha Black Tea 1Kg </h3>
-        <p class="text-green-600 font-bold mb-4">₹400</p>
-        <p class="text-gray-600 text-sm mb-4">PREMIUM QUALITY: Loose leaf black tea from India best chai</p>
-        <button class="lop" onclick="window.location.href='buy4.html'">BUY
-          NOW</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="section" style="background:#fff">
-    <div class="container about">
-      <div class="reveal">
-        <h2>📌.About Us</h2>
-        <p class="lead">
-          Aapani Cha was founded in 2023 by the Patel brothers, who discovered their passion for tea
-          while helping in their family Kirana store in Becharaji. After learning everything from
-          tea tasting to packaging and distribution in 2022, they decided to bring their love of tea
-          to the masses.
-        </p>
-        <p>
-          Within just two years, Aapani Cha expanded across Gujarat and earned the prestigious
-          ISO 9001:2000 certification in 2024 for maintaining the highest quality standards.
-          Today, Aapani Cha is loved in India and abroad for its authentic taste and premium blends.
-        </p>
-        <ul style="margin:10px 0 0; padding-left:18px; color:var(--muted)">
-          <li>Premium quality & fresh blends</li>
-          <li>ISO 9001:2000 certified</li>
-          <li>Popular varieties: Yellow, Elaichi, Gold Pattian, Masala, Adrak & Tulsi Tea</li>
-        </ul>
-      </div>
-      <div class="card-img ooo">
-        <img src="sale.jpg" alt="Tea being poured" />
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section class="bg-white py-16">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-
-      <!-- Left Side: Contact Info -->
-      <div>
-        <h2 class="text-3xl font-bold mb-6">Contact Us</h2>
-        <p class="text-gray-700 mb-4 leading-relaxed">
-          अगर आप हमारे premium tea blends, bulk orders या dealership में interested हैं,
-          तो हमसे सीधे जुड़ सकते हैं।
-        </p>
-
-        <ul class="space-y-3 text-gray-800">
-          <li>📍 <strong>Head Office:</strong> 19,OM AGRO ESTATE GODOWN
-            Road/Street: CHETHARIYAVEER PASE
-            City/Town/Village: Patan
-            District: Patan
-            State: Gujarat
-            PIN Code: 384265</li>
-
-          <li>📞 <strong>Phone:</strong> +91 8200942931
-          </li>
-          <li>📧 <strong>Email:</strong> Vardayinitea151@gmail.com</li>
-          <li>⏰ <strong>Business Hours:</strong> Mon – Sat, 8:00 AM – 7:00 PM</li>
-        </ul>
-
-        <div class="mt-6">
-          <a href="https://wa.me/918200942931" target="_blank"
-            class="bg-green-600 text-white px-5 py-2 rounded-lg shadow-md hover:bg-green-700 transition">
-            💬 WhatsApp Us
-          </a>
+    <!-- TRUST -->
+    <section class="py-10 border-y border-white/5 bg-neutral-950/60">
+        <div class="mx-auto container-max px-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+            <div class="reveal">
+                <p class="text-3xl font-bold">20+</p>
+                <p class="text-neutral-300">Projects delivered</p>
+            </div>
+            <div class="reveal">
+                <p class="text-3xl font-bold">5★</p>
+                <p class="text-neutral-300">Client rating</p>
+            </div>
+            <div class="reveal">
+                <p class="text-3xl font-bold">100%</p>
+                <p class="text-neutral-300">Mobile responsive</p>
+            </div>
+            <div class="reveal">
+                <p class="text-3xl font-bold">SEO</p>
+                <p class="text-neutral-300">Best practices</p>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <!-- Right Side: Location Map -->
-      <div class="shadow-lg rounded-2xl overflow-hidden border">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d29199.658173335854!2d72.0907778!3d23.8201184!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjPCsDQ5JzI0LjQiTiA3MsKwMDUnMzYuNyJF!5e0!3m2!1sen!2sin!4v1757610455152!5m2!1sen!2sin"
-          width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <!-- <iframe
-                    src="https://maps.app.goo.gl/vU4zwrVBS84rB8YJ6"
-                    width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe> -->
-      </div>
+    <!-- SERVICES -->
+    <section id="services" class="py-16">
+        <div class="mx-auto container-max px-4">
+            <div class="reveal text-center max-w-2xl mx-auto">
+                <h2 class="text-3xl sm:text-4xl font-bold">Services</h2>
+                <p class="mt-2 text-neutral-300">Pick a package or mix & match. Custom requests welcome.</p>
+            </div>
 
-    </div>
-  </section>
-
-
-
-  <!-- Login Popup --> isko
-  <div class="overlay" id="loginOverlay"></div>
-  <div class="popup" id="loginPopup">
-    <h3>Enter your Details</h3>
-    <form id="loginForm">
-      <!-- Name -->
-      <input type="text" id="loginName" placeholder="Enter your name" required />
-
-      <!-- Phone -->
-      <input type="tel" id="loginPhone" placeholder="Enter your phone number" required />
-
-      <!-- State -->
-      <input type="text" id="loginState" placeholder="Enter your State" required />
-
-      <!-- City -->
-      <input type="text" id="loginCity" placeholder="Enter your City" required />
-
-      <!-- Flat / Apartment -->
-      <input type="text" id="loginFlat" placeholder="Flat / Apartment No." required />
-
-      <!-- Address -->
-      <input type="text" id="loginAddress" placeholder="Enter your full address" required minlength="15" />
-
-      <!-- Product -->
-      <input type="text" id="loginProduct" readonly />
-
-      <!-- WhatsApp Button -->
-      <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white p-3 rounded-lg font-semibold">
-        Send Details to WhatsApp
-      </button>
-
-      <p class="text-gray-500 text-sm mt-2 text-center">
-        मैसेज भेजने के बाद payment QR दिखाई देगा
-      </p>
-
-      <!-- Payment Section -->
-      <div id="paymentSection" class="mt-6 bg-gray-50 p-4 rounded-lg shadow-inner hidden">
-        <h3 class="text-lg font-bold text-gray-700 mb-2 text-center">Payment Options</h3>
-        <p class="text-gray-600 text-sm text-center mb-3">PhonePe / Google Pay से भुगतान करें</p>
-        <div class="flex justify-center gap-6 flex-wrap">
-          <div class="qr">
-            <img
-              src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=9909732645@ibl&pn=Aapani+Cha&am=199&cu=INR&tn=Tea+Order"
-              width="200" alt="UPI QR Code"
-              onclick="window.location.href='upi://pay?pa=9909732645@ibl&pn=Aapani+Cha&am=199&cu=INR&tn=Tea+Order'">
-            <p>Tap QR to open UPI app</p>
-          </div>
-          <p class="text-gray-500 text-sm mt-2 text-center">
-            UPI Id-ww9989812891@ybl
-          </p>
+            <div class="mt-10 grid md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="reveal rounded-2xl border border-white/10 bg-white/5 p-6">
+                    <div class="h-10 w-10 rounded-xl bg-brand-500/20 grid place-content-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M4 5h16v2H4zM4 11h16v2H4zM4 17h10v2H4z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold">Using language</h3>
+                    <p class="mt-2 text-neutral-300">High-converting single to duble pages for products.</p>
+                    <ul class="mt-4 text-sm text-neutral-300 list-disc pl-5 space-y-1">
+                        <li>HTML</li>
+                        <li>Tailwind Css</li>
+                        <li>JavaScript</li>
+                    </ul>
+                </div>
+                <!-- Card 2 -->
+                <div class="reveal rounded-2xl border border-white/10 bg-white/5 p-6">
+                    <div class="h-10 w-10 rounded-xl bg-brand-500/20 grid place-content-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M3 4h18v2H3zM3 8h18v12H3z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold">Extra services</h3>
+                    <p class="mt-2 text-neutral-300">Along with your website,we provide engaging YouTube advertisements
+                        to boost your brand visibility and accelerate growth.</p>
+                    <ul class="mt-4 text-sm text-neutral-300 list-disc pl-5 space-y-1">
+                        <li>YouTube advertising</li>
+                        <li>free github link</li>
+                        <li>add payment only ₹13,000</li>
+                    </ul>
+                </div>
+                <!-- Card 3 -->
+                <div class="reveal rounded-2xl border border-white/10 bg-white/5 p-6">
+                    <div class="h-10 w-10 rounded-xl bg-brand-500/20 grid place-content-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M5 5h14v14H5z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold">Responsive</h3>
+                    <p class="mt-2 text-neutral-300">100% Responsive your web site</p>
+                    <ul class="mt-4 text-sm text-neutral-300 list-disc pl-5 space-y-1">
+                        <li>Mobile</li>
+                        <li>Tablet</li>
+                        <li>Computer</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <!-- ⭐ Rating Button (Hidden by default) -->
-      <div class="text-center mt-4">
-        <button id="ratingBtn"
-          style="display:none; padding:12px 20px; font-size:18px; background:#f59e0b; color:#fff; border:none; border-radius:8px; cursor:pointer;">
-          ⭐ Rate Us
-        </button>
-      </div>
-  </div>
-  </form>
-  </div>
+    <!-- WORK / PORTFOLIO -->
+    <section id="work" class="py-16 border-t border-white/5">
+        <div class="mx-auto container-max px-4">
+
+            <div class="reveal text-center max-w-2xl mx-auto">
+                <h2 class="text-3xl sm:text-4xl font-bold">Recent Work</h2>
+                <p class="mt-2 text-neutral-300">A quick look at styles you can choose. All these websites are available
+                    below, whichever site you like, tell me and I can make a website like that.</p>
+            </div>
+
+            <div class="mt-10 grid md:grid-cols-3 gap-6">
+                <!-- Portfolio card template -->
+                <article class="reveal group rounded-2xl overflow-hidden border border-white/10 bg-white/5">
+
+                    <img src="img/Screenshot 2025-09-05 031418.png" alt="Project Image"
+                        class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="p-5">
+                        <h3 class="font-semibold">Portfolio</h3>
+                        <p class="text-sm text-neutral-300 mt-1">Html + Css + JavaScript</p>
+                        <a onclick="location.href='indet.html'"
+                            class="inline-flex items-center gap-2 mt-3 text-brand-300 group-hover:underline">Live
+                            preview <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 17l9-9v6h2V5h-9v2h6L6 16z" />
+                            </svg></a>
+                        <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold"
+                            onclick="sendToWhatsApp('Advanced Frontend Website')">
+                            Buy
+                        </button>
+                    </div>
+                </article>
+                <article class="reveal group rounded-2xl overflow-hidden border border-white/10 bg-white/5">
+                    <img src="img/het.png" alt="Project Image" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="p-5">
+                        <h3 class="font-semibold">Fast-Food Website</h3>
+                        <p class="text-sm text-neutral-300 mt-1">Singele page Website</p>
+                        <a onclick="location.href='het.html'"
+                            class="inline-flex items-center gap-2 mt-3 text-brand-300 group-hover:underline">Live
+                            preview <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 17l9-9v6h2V5h-9v2h6L6 16z" />
+                            </svg></a>
+                        <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold"
+                            onclick="sendToWhatsApp('Fast-Food Website')">
+                            Buy
+                        </button>
+                    </div>
+                </article>
+                <article class="reveal group rounded-2xl overflow-hidden border border-white/10 bg-white/5">
+                    <img src="img/Screenshot 2025-09-06 183324.png" alt="Project Image"
+                        class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="p-5">
+                        <h3 class="font-semibold">Aapani Cha</h3>
+                        <p class="text-sm text-neutral-300 mt-1">PREMIUM QUALITY: Loose leaf black tea from India best
+                            chai</p>
+                        <a onclick="location.href='happy.html'"
+                            class="inline-flex items-center gap-2 mt-3 text-brand-300 group-hover:underline">Live
+                            preview <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 17l9-9v6h2V5h-9v2h6L6 16z" />
+                            </svg></a>
+                        <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold"
+                            onclick="sendToWhatsApp('Advanced Frontend Website')">
+                            Buy
+                        </button>
+                </article>
 
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-300 py-10">
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div>
-        <h3 class="text-xl font-bold text-white mb-4">Chai Corner</h3>
-        <p class="text-sm">Enjoy the finest chai made with love and tradition. Fresh, aromatic, and perfectly
-          brewed to brighten your day.</p>
-      </div>
-      <div>
-        <h3 class="text-xl font-bold text-white mb-4">Quick Links</h3>
-        <ul class="space-y-2 text-sm">
-          <li><a href="#menu" class="hover:text-orange-400">Menu</a></li>
-          <li><a href="#about" class="hover:text-orange-400">About</a></li>
-          <li><a href="#contact" class="hover:text-orange-400">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-xl font-bold text-white mb-4">Follow Us</h3>
-        <div class="flex space-x-4">
-          <a href="https://www.facebook.com/share/1D2d1RiT2k/" class="hover:text-orange-400" aria-label="Facebook">
-            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-              <path
-                d="M22,12A10,10,0,1,0,10,22V14H7v-3h3V8.5A3.5,3.5,0,0,1,13.5,5h3v3h-3a.5.5,0,0,0-.5.5V11h4l-1,3H10v8A10,10,0,0,0,22,12Z" />
-            </svg>
-          </a>
-          <a href="https://www.instagram.com/aapani_cha?igsh=NWE0azJmY2twN2th&utm_source=qr"
-            class="hover:text-orange-400" aria-label="Instagram">
-            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-              <path
-                d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10zm-5 3a5 5 0 1 0 5 5 5.006 5.006 0 0 0-5-5zm0 2a3 3 0 1 1-3 3 3.004 3.004 0 0 1 3-3zm4.5-.5a1 1 0 1 1-1 1 1 1 0 0 1 1-1z" />
-            </svg>
-          </a>
-          <a href="#" class="hover:text-orange-400" aria-label="Twitter">
-            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-              <path
-                d="M22 5.924c-.793.352-1.644.588-2.538.692a4.433 4.433 0 0 0 1.946-2.447 8.86 8.86 0 0 1-2.81 1.075 4.422 4.422 0 0 0-7.532 3.024A12.534 12.534 0 0 1 3.148 4.729a4.423 4.423 0 0 0 1.37 5.904 4.405 4.405 0 0 1-2.003-.553v.057a4.423 4.423 0 0 0 3.546 4.334 4.438 4.438 0 0 1-1.998.076 4.423 4.423 0 0 0 4.129 3.068 8.864 8.864 0 0 1-5.489 1.894c-.357 0-.709-.021-1.056-.062A12.518 12.518 0 0 0 12 21c7.547 0 11.675-6.254 11.675-11.675 0-.178-.004-.355-.012-.531A8.345 8.345 0 0 0 22 5.924z" />
-            </svg>
-          </a>
+
+            </div>
         </div>
-      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="py-16">
+        <div class="mx-auto container-max px-4">
+            <div class="reveal text-center max-w-2xl mx-auto">
+                <h2 class="text-3xl sm:text-4xl font-bold">Pricing</h2>
+                <p class="mt-2 text-neutral-300">Simple, transparent pricing. Pay 50% to start, 50% on delivery.</p>
+            </div>
+
+            <div class="mt-8 flex items-center justify-center gap-3 text-sm">
+                <span>INR</span>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" value="" class="sr-only peer" id="currencyToggle">
+                    <div
+                        class="w-12 h-6 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-6 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all">
+                    </div>
+                </label>
+                <span>USD</span>
+            </div>
+
+            <div class="mt-10 grid md:grid-cols-3 gap-6">
+                <!-- Plan 1 -->
+                <div class="reveal rounded-2xl border border-white/10 bg-white/5 p-6 flex flex-col">
+                    <h3 class="text-xl font-semibold">Starter</h3>
+                    <p class="text-neutral-300 mt-1">Single landing page</p>
+                    <p class="mt-4 text-3xl font-extrabold"><span class="price" data-inr="5999"
+                            data-usd="99">₹5,999</span></p>
+                    <ul class="mt-4 text-sm text-neutral-300 list-disc pl-5 space-y-1 flex-1">
+                        <li>1 page, 5 sections</li>
+                        <li>Mobile responsive</li>
+                        <li>Basic SEO</li>
+                        <li>Hosting Charge ₹3500</li>
+                        <li>2 revisions</li>
+
+                    </ul>
+                    <button
+                        class="orderBtn mt-6 px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 shadow-glow font-semibold"
+                        data-plan="Starter">Order Starter</button>
+                </div>
+                <!-- Plan 2 -->
+                <div
+                    class="reveal rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5 p-6 flex flex-col ring-1 ring-white/10">
+                    <div
+                        class="inline-flex text-xs px-2 py-1 rounded-full bg-emerald-400/20 text-emerald-200 border border-emerald-200/30 w-max">
+                        Most popular</div>
+                    <h3 class="text-xl font-semibold mt-2">Business</h3>
+                    <p class="text-neutral-300 mt-1">2–5 page website</p>
+                    <p class="mt-4 text-3xl font-extrabold"><span class="price" data-inr="14999"
+                            data-usd="249">₹14,999</span></p>
+                    <ul class="mt-4 text-sm text-neutral-300 list-disc pl-5 space-y-1 flex-1">
+                        <li>Upto 5 pages</li>
+                        <li>Speed & SEO optimized</li>
+                        <li>Contact form</li>
+                        <li>Hosting Charge ₹3500</li>
+                        <li>4 revisions</li>
+                    </ul>
+                    <button
+                        class="orderBtn mt-6 px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 shadow-glow font-semibold"
+                        data-plan="Business">Order Business</button>
+                </div>
+                <!-- Plan 3 -->
+                <div class="reveal rounded-2xl border border-white/10 bg-white/5 p-6 flex flex-col">
+                    <h3 class="text-xl font-semibold">Pro</h3>
+                    <p class="text-neutral-300 mt-1">Custom components & pages</p>
+                    <p class="mt-4 text-3xl font-extrabold"><span class="price" data-inr="29999"
+                            data-usd="499">₹29,999</span></p>
+                    <ul class="mt-4 text-sm text-neutral-300 list-disc pl-5 space-y-1 flex-1">
+                        <li>Unlimited pages (scope)</li>
+                        <li>Component library</li>
+                        <li>Animations & effects</li>
+                        <li>Hosting Charge ₹3500</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <button
+                        class="orderBtn mt-6 px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 shadow-glow font-semibold"
+                        data-plan="Pro">Order Pro</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 items-center">
+        <!-- Left Text Section -->
+        <div>
+            <h3 class="text-gray-400 uppercase tracking-widest mb-2">About</h3>
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Want a Stunning Website?</h1>
+            <p class="text-gray-300 mb-8 leading-relaxed">
+                We don’t just rely on AI — we mix creativity and technology to build websites that speak your brand.
+                From structure to design, everything is crafted carefully to deliver a premium feel.
+            </p>
+            <button
+                class="bg-blue-500 hover:bg-blue-600 transition-all text-white px-6 py-3 rounded-lg font-medium shadow-lg">
+                Learn More
+            </button>
+        </div>
+
+        <!-- Right Services Section -->
+        <div class="grid sm:grid-cols-2 gap-6">
+            <div class="bg-white text-gray-900 p-6 rounded-2xl shadow-xl hover:-translate-y-1 transition-transform">
+                <div class="w-12 h-12 flex items-center justify-center bg-blue-500 text-white rounded-full mb-4">
+                    💡
+                </div>
+                <h3 class="font-semibold text-lg mb-2">Custom Clean Websites</h3>
+                <p class="text-gray-600 text-sm">
+                    We build neat, modern, and professional websites — exactly how you imagine them.
+                </p>
+            </div>
+
+            <div class="bg-white text-gray-900 p-6 rounded-2xl shadow-xl hover:-translate-y-1 transition-transform">
+                <div class="w-12 h-12 flex items-center justify-center bg-pink-500 text-white rounded-full mb-4">
+                    🎨
+                </div>
+                <h3 class="font-semibold text-lg mb-2">Animated Websites</h3>
+                <p class="text-gray-600 text-sm">
+                    Smooth animations — from menu bars to text transitions — to make your site interactive and fun.
+                </p>
+            </div>
+
+            <div class="bg-white text-gray-900 p-6 rounded-2xl shadow-xl hover:-translate-y-1 transition-transform">
+                <div class="w-12 h-12 flex items-center justify-center bg-green-500 text-white rounded-full mb-4">
+                    📱
+                </div>
+                <h3 class="font-semibold text-lg mb-2">Modern Responsive Design</h3>
+                <p class="text-gray-600 text-sm">
+                    Perfectly optimized for every device — mobile, tablet, or desktop. Fast, smooth, and stylish.
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- PROCESS -->
+    <section class="bg-[#1a1a1a] text-white py-16 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10">How it Works</h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="p-6 bg-[#242424] rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3500/3500833.png" alt="Step 1"
+                        class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="font-semibold text-lg">Choose Product</h3>
+                    <p class="text-gray-400 text-sm mt-2">Select your favorite Project from our collection.</p>
+                </div>
+
+                <div class="p-6 bg-[#242424] rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+                    <img src="https://cdn-icons-png.flaticon.com/512/942/942748.png" alt="Step 2"
+                        class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="font-semibold text-lg">Fill Details</h3>
+                    <p class="text-gray-400 text-sm mt-2">Enter your product & site information.</p>
+                </div>
+
+                <div class="p-6 bg-[#242424] rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Step 3"
+                        class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="font-semibold text-lg">Payment</h3>
+                    <p class="text-gray-400 text-sm mt-2">“Pay 50% in advance to start the project.
+                        Your site will be hosted after full payment.”</p>
+                </div>
+
+                <div class="p-6 bg-[#242424] rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3063/3063825.png" alt="Step 4"
+                        class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="font-semibold text-lg"></h3>
+                    <p class="text-gray-400 text-sm mt-2"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- TESTIMONIALS -->
+    <section class="py-16">
+        <div class="mx-auto container-max px-4">
+            <div class="reveal text-center max-w-2xl mx-auto">
+                <h2 class="text-3xl sm:text-4xl font-bold">Happy Clients</h2>
+                <p class="mt-2 text-neutral-300">What people say after launch.</p>
+            </div>
+            <div class="mt-10 grid md:grid-cols-3 gap-6">
+                <figure class="reveal rounded-2xl border border-white/10 bg-white/5 p-6">
+                    <blockquote class="text-neutral-200">“Fast and clean work. My landing page started converting from
+                        day 1.”</blockquote>
+                    <figcaption class="mt-3 text-sm text-neutral-400">— Rahul, Course Creator</figcaption>
+                </figure>
+                <figure class="reveal rounded-2xl border border-white/10 bg-white/5 p-6">
+                    <blockquote class="text-neutral-200">“Great communication and attention to detail. Highly
+                        recommended.”</blockquote>
+                    <figcaption class="mt-3 text-sm text-neutral-400">— Priya, Agency Owner</figcaption>
+                </figure>
+                <figure class="reveal rounded-2xl border border-white/10 bg-white/5 p-6">
+                    <blockquote class="text-neutral-2 00">“Performance score hit 100 on Lighthouse. Super happy!”
+                    </blockquote>
+                    <figcaption class="mt-3 text-sm text-neutral-400">— Aman, Startup Founder</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-16 border-t border-white/5">
+        <div class="mx-auto container-max px-4">
+            <div class="reveal text-center max-w-2xl mx-auto">
+                <h2 class="text-3xl sm:text-4xl font-bold">FAQ</h2>
+                <p class="mt-2 text-neutral-300">Quick answers before we start.</p>
+            </div>
+
+            <div class="mt-10 grid md:grid-cols-2 gap-6">
+                <details class="reveal group rounded-2xl border border-white/10 bg-white/5 p-6 open:bg-white/10">
+                    <summary class="cursor-pointer list-none flex items-center justify-between">
+                        <span class="font-semibold">How fast can you deliver?</span>
+                        <span class="ml-4">➕</span>
+                    </summary>
+                    <p class="mt-3 text-neutral-300">Landing pages in 1–3 days. Multi-page sites 3–7 days depending on
+                        scope.</p>
+                </details>
+                <details class="reveal group rounded-2xl border border-white/10 bg-white/5 p-6 open:bg-white/10">
+                    <summary class="cursor-pointer list-none flex items-center justify-between">
+                        <span class="font-semibold">Do you provide content/images?</span>
+                        <span class="ml-4">➕</span>
+                    </summary>
+                    <p class="mt-3 text-neutral-300">You can share content or I can use placeholders and royalty-free
+                        images.</p>
+                </details>
+                <details class="reveal group rounded-2xl border border-white/10 bg-white/5 p-6 open:bg-white/10">
+                    <summary class="cursor-pointer list-none flex items-center justify-between">
+                        <span class="font-semibold">Can you maintain my website?</span>
+                        <span class="ml-4">➕</span>
+                    </summary>
+                    <p class="mt-3 text-neutral-300">Yes, monthly maintenance plans are available on request.</p>
+                </details>
+                <details class="reveal group rounded-2xl border border-white/10 bg-white/5 p-6 open:bg-white/10">
+                    <summary class="cursor-pointer list-none flex items-center justify-between">
+                        <span class="font-semibold">Do you offer refunds?</span>
+                        <span class="ml-4">➕</span>
+                    </summary>
+                    <p class="mt-3 text-neutral-300">If the delivered work doesn't match the agreed brief, I'll fix it
+                        or refund the advance.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT / CTA -->
+    <section id="contact" class="py-16">
+        <div class="mx-auto container-max px-4 grid lg:grid-cols-2 gap-8 items-center">
+            <div class="reveal">
+                <h2 class="text-3xl sm:text-4xl font-bold">Ready to start?</h2>
+                <p class="mt-2 text-neutral-300">Tell me about your project and preferred package. I reply within a few
+                    hours.</p>
+                <div class="mt-6 flex gap-3">
+                    <a href="https://wa.me/917698960192?text=Hi%20Het%2C%20I%20want%20a%20frontend%20website.%20Package%3A%20"
+                        class="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 font-semibold" target="_blank"
+                        rel="noopener">WhatsApp</a>
+                    <a href="mailto:hello@example.com?subject=Project%20Inquiry%20-%20Het%20Web%20Studio"
+                        class="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10">Email</a>
+                </div>
+            </div>
+
+            <form id="contactForm" class="reveal rounded-2xl border border-white/10 bg-white/5 p-6 grid gap-4">
+                <div class="grid gap-1">
+                    <label for="name" class="text-sm text-neutral-300">Your name</label>
+                    <input id="name" name="name" type="text"
+                        class="px-4 py-3 rounded-xl bg-neutral-900 border border-white/10 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                        required />
+                </div>
+                <div class="grid gap-1">
+                    <label for="email" class="text-sm text-neutral-300">Email</label>
+                    <input id="email" name="email" type="email"
+                        class="px-4 py-3 rounded-xl bg-neutral-900 border border-white/10 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                        required />
+                </div>
+                <div class="grid gap-1">
+                    <label for="package" class="text-sm text-neutral-300">Package</label>
+                    <select id="package" name="package"
+                        class="px-4 py-3 rounded-xl bg-neutral-900 border border-white/10 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        <option>Starter</option>
+                        <option>Business</option>
+                        <option>Pro</option>
+                    </select>
+                </div>
+                <div class="grid gap-1">
+                    <label for="message" class="text-sm text-neutral-300">Message</label>
+                    <textarea id="message" name="message" rows="4"
+                        class="px-4 py-3 rounded-xl bg-neutral-900 border border-white/10 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                        placeholder="Share goals, references, deadline..."></textarea>
+                </div>
+                <button type="submit"
+                    class="px-5 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 shadow-glow font-semibold">Send
+                    Message</button>
+                <p id="formNote" class="text-sm text-neutral-400">This demo form shows a success message (no backend
+                    required).</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/5 py-10">
+        <div
+            class="mx-auto container-max px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-neutral-400">
+            <p>© <span id="year"></span> Het Web Studio. All rights reserved.</p>
+            <div class="flex items-center gap-4">
+                <a href="#" class="hover:text-white">Terms</a>
+                <a href="#" class="hover:text-white">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ORDER MODAL -->
+    <div id="orderModal" class="fixed inset-0 hidden items-center justify-center bg-black/60 p-4">
+        <div class="w-full max-w-md rounded-2xl border border-white/10 bg-neutral-950 p-6">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <h3 class="text-xl font-semibold">Start your project</h3>
+                    <p class="text-neutral-400 text-sm">Package: <span id="modalPlan" class="font-medium"></span></p>
+                </div>
+                <button id="closeModal" class="p-2 rounded-lg bg-white/10">✕</button>
+            </div>
+            <div class="mt-4 grid gap-3">
+                <a id="modalWhatsApp" href="#" target="_blank" rel="noopener"
+                    class="px-4 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-center font-semibold">Chat on
+                    WhatsApp</a>
+                <a id="modalEmail" href="#"
+                    class="px-4 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-center">Send
+                    Email</a>
+            </div>
+            <p class="text-xs text-neutral-400 mt-4">No payment now. We'll discuss scope and timelines first.</p>
+        </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 wop">
+    <!-- SCRIPTS -->
+    <script>
+        // Year
+        document.getElementById('year').textContent = new Date().getFullYear();
 
-      <!-- Column 1 -->
-      <div>
-        <h3 class="text-xl font-bold text-orange-400 mb-4">
-          Aapani Cha – “Apno ke liye, Apno jaisi Chai”
-        </h3>
-        <p class="text-sm leading-relaxed">
-          हमारा मकसद है हर कप में वो स्वाद देना जो दिल को छू जाए।<br />
-          Aapani Cha एक <strong>premium chai manufacturing brand</strong> है,
-          जहाँ हर पत्ते को carefully चुना जाता है और traditional तरीके से तैयार किया जाता है,
-          ताकि आपको मिले ekdum desi, strong aur refreshing taste.
-        </p>
-      </div>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
 
-      <!-- Column 2 -->
-      <div>
-        <h3 class="text-lg font-semibold mb-3">हम specialize करते हैं:</h3>
-        <p class="text-sm leading-relaxed">
-          ✅ Premium Tea Leaves (CTC, Green, Masala, आदि)<br />
-          ✅ Bulk Orders ke liye Supply<br />
-          ✅ Cafe & Hotels ke liye Custom Blends<br />
-          ✅ Hygienic Packaging with Quality Assurance
-        </p>
-      </div>
+        // Reveal on scroll (IntersectionObserver)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-      <!-- Column 3 -->
-      <div>
-        <h3 class="text-lg font-semibold mb-3">Connect With Us</h3>
-        <p class="text-sm leading-relaxed mb-4">
-          अगर आप भी अपने customers को authentic, aromatic aur flavorful chai serve करना चाहते हैं,
-          तो जुड़िए Aapani Cha से – जहाँ हर घूँट में है अपनेपन का एहसास।
-        </p>
-        <p class="text-sm font-medium text-orange-400">
-          📦 Pan India Delivery Available <br />
-          📞 Call/WhatsApp for bulk orders & dealership
-        </p>
-      </div>
-
-    </div>
-    <div class="mt-8 border-t border-gray-800 pt-4 text-sm text-center text-gray-500">
-      © <span id="year"></span> Aapani Cha. All rights reserved.
-    </div>
-  </footer>
-
-  <!-- JavaScript -->
-  <script>
-    // Sidebar functions — globally accessible
-    function openNav() {
-      document.getElementById("mySidebar").style.width = "250px";
-    }
-
-    function closeNav() {
-      document.getElementById("mySidebar").style.width = "0";
-    }
-    // Current year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Reveal animation on scroll
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('show');
-          io.unobserve(e.target);
+        // Currency toggle
+        const currencyToggle = document.getElementById('currencyToggle');
+        const prices = document.querySelectorAll('.price');
+        const toCurrency = (val, currency) => {
+            return new Intl.NumberFormat('en-IN', { style: 'currency', currency }).format(val);
         }
-      });
-    }, { threshold: 0.2 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+        const updatePrices = () => {
+            const usd = currencyToggle.checked;
+            prices.forEach(el => {
+                const amount = usd ? el.dataset.usd : el.dataset.inr;
+                el.textContent = usd ? `$${amount}` : `₹${Number(amount).toLocaleString('en-IN')}`;
+            });
+        };
+        currencyToggle.addEventListener('change', updatePrices);
+        updatePrices();
 
-    // Open login form and set product name
-    function openLoginForm(button) {
-      const product = button.getAttribute('data-product');
-      document.getElementById('loginProduct').value = product;
-      document.getElementById('loginOverlay').style.display = 'block';
-      document.getElementById('loginPopup').style.display = 'block';
-      document.body.style.overflow = 'hidden';  // disable background scroll
-    }
+        // Order modal
+        const orderBtns = document.querySelectorAll('.orderBtn');
+        const orderModal = document.getElementById('orderModal');
+        const modalPlan = document.getElementById('modalPlan');
+        const modalWhatsApp = document.getElementById('modalWhatsApp');
+        const modalEmail = document.getElementById('modalEmail');
+        const closeModal = document.getElementById('closeModal');
 
-    function closeLoginForm() {
-      document.getElementById('loginOverlay').style.display = 'none';
-      document.getElementById('loginPopup').style.display = 'none';
-      document.body.style.overflow = 'auto';    // enable background scroll again
-    }
+        orderBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const plan = btn.dataset.plan;
+                modalPlan.textContent = plan;
+                const message = encodeURIComponent(`Hi Het, I'm interested in the ${plan} plan.`);
+                modalWhatsApp.href = `https://wa.me/917698960192?text=${message}`;
+                modalEmail.href = `mailto:hello@example.com?subject=${encodeURIComponent('Project Inquiry - ' + plan)}&body=${message}`;
+                orderModal.classList.remove('hidden');
+                orderModal.classList.add('flex');
+            });
+        });
 
-    document.getElementById('loginOverlay').addEventListener('click', closeLoginForm);
+        closeModal.addEventListener('click', () => {
+            orderModal.classList.add('hidden');
+            orderModal.classList.remove('flex');
+        });
+        orderModal.addEventListener('click', (e) => {
+            if (e.target === orderModal) {
+                orderModal.classList.add('hidden');
+                orderModal.classList.remove('flex');
+            }
+        });
 
-    // On form submit send details to WhatsApp
-    document.getElementById('loginForm').addEventListener('submit', function (e) {
-      e.preventDefault();
+        // Contact form (demo)
+        const contactForm = document.getElementById('contactForm');
+        const formNote = document.getElementById('formNote');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            formNote.textContent = 'Thanks! Your message was recorded (demo). I will get back to you shortly.';
+            contactForm.reset();
+        });
 
-      // ✅ Get form values (make sure input IDs match exactly in your HTML)
-      const name = document.getElementById('loginName').value.trim();
-      const phone = document.getElementById('loginPhone').value.trim();
-      const state = document.getElementById('loginState').value.trim();
-      const city = document.getElementById('loginCity').value.trim();
-      const flat = document.getElementById('loginFlat').value.trim();
-      const address = document.getElementById('loginAddress').value.trim();
-      const product = document.getElementById('loginProduct').value.trim();
+        function sendToWhatsApp(productName) {
+            const phoneNumber = "918000000000"; // ← apna WhatsApp number daalna (country code ke sath)
+            const message = `Hi, I want to buy ${productName}`;
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, "_blank");
+        }
 
-      // Agar koi field empty hai to rok do
-      if (!name || !phone || !state || !city || !flat || !address || !product) {
-        alert("Please fill all fields!");
-        return;
-      }
-
-      // WhatsApp number — replace with your actual number without +
-      const whatsappNumber = '918200942931';
-
-      // ✅ Message format
-      const message =
-        `🛒 *New Order Details* 🛒\n\n` +
-        `👤 Name: ${name}\n📞 Phone: ${phone}\n🏠 State: ${state}\n🏙 City: ${city}\n🏢 Flat/Apt No.: ${flat}\n📍 Address: ${address}\n📦 Product: ${product}`;
-
-      // Encode message
-      const encodedMessage = encodeURIComponent(message);
-
-      // WhatsApp URL
-      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-
-
-      // Open WhatsApp in new tab
-      window.open(whatsappURL, '_blank');
-
-      // Close form and reset
-
-
-      // Show Payment Section
-      document.getElementById("paymentSection").classList.remove("hidden");
-
-
-    });
-     let wentForPayment = false;
-
-  function userWentForPayment() {
-    wentForPayment = true;
-  }
-
-  // Jab user bahar se wapas site par aaye
-  window.addEventListener("focus", function () {
-    if (wentForPayment) {
-      document.getElementById("ratingBtn").style.display = "inline-block";
-    }
-  });
-
-  // Rating button click par thank you msg
-  document.getElementById("ratingBtn").addEventListener("click", function () {
-    alert("🙏 Thanks for rating us!");
-  });
-  </script>
-
+    </script>
 </body>
 
 </html>
